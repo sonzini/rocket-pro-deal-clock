@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Clean File — Rocket Pro broker friction study
 
-## Getting Started
+A research report and working MVP prepared for the Rocket Pro interview process.
 
-First, run the development server:
+**Thesis:** Rocket Pro has made the part it controls fast (same-day conditional approval, clear-to-close in 12 business days). The bottleneck now sits *before* that clock starts: brokers submit incomplete files, conditions come back in rounds, documents expire, and surprises show up near closing.
+
+**MVP:** *Clean File* is a pre-submission check the broker runs before hitting "Submit":
+
+- predicts the underwriting conditions a file is likely to get, with the public guideline behind each one;
+- writes one plain-language request to the borrower, in English or Spanish;
+- compares the realistic closing path with the contract closing date.
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 for the report and http://localhost:3000/demo for the MVP. Use the sample-file buttons to try it without real data.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How it's built
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js (App Router) + TypeScript + Tailwind CSS, fully static.
+- `src/lib/engine.ts` — the rules engine. Deterministic, no AI calls, no network: nothing typed leaves the browser.
+- `src/app/Report.tsx` — the report; `src/components/RoiCalculator.tsx` — the business-case calculator.
+- English / Spanish toggle in the header.
 
-## Learn More
+## Caveats
 
-To learn more about Next.js, take a look at the following resources:
+Rules are drawn from public Fannie Mae and HUD guidelines and common wholesale practice, not Rocket Pro's own overlays. It's a preparation checklist, not an underwriting decision. Financial figures are estimates from public filings and industry data, meant to be replaced with Rocket's internal data in a pilot.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Independent work; not affiliated with or endorsed by Rocket Companies.
