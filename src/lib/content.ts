@@ -1,4 +1,4 @@
-import type { L } from "./engine";
+import type { L } from "./types";
 
 export const VOICES: { quote: string; who: L; source: string; url: string }[] = [
   {
@@ -40,6 +40,10 @@ export const VOICES: { quote: string; who: L; source: string; url: string }[] = 
 ];
 
 export const SOURCES: { title: string; url: string }[] = [
+  { title: "Florida Realtors — Buyers turn to agents for mortgage information (43% vs 29%)", url: "https://www.floridarealtors.org/news-media/news-articles/2026/10/buyers-turn-agents-mortgage-information" },
+  { title: "MPA — Pending sales at 12-year low; 14.5% of contracts canceled (Redfin)", url: "https://www.mpamag.com/us/mortgage-industry/market-updates/pending-home-sales-sink-to-12-year-low-after-mortgage-rates-soar-past-7/593311" },
+  { title: "CFPB — TRID Closing Disclosure timing (12 CFR 1026.19(f))", url: "https://www.consumerfinance.gov/rules-policy/regulations/1026/19/" },
+  { title: "YouTube — Rocket Pro Relay, Big Pitch entry (broker “closing command center”)", url: "https://www.youtube.com/watch?v=7zBD4VbI2vw" },
   { title: "Rocket Pro — Orbit & Purchase Priority terms (12-day CTC eligibility)", url: "https://www.rocketpro.com/orbit" },
   { title: "Rocket Pro — The Big Pitch (Quick Counter, Right Track, Signal)", url: "https://www.rocketpro.com/the-big-pitch" },
   { title: "Rocket Pro — Moving Squad", url: "https://www.rocketpro.com/moving-squad" },

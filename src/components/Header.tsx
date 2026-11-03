@@ -13,9 +13,9 @@ export function Header({ active }: { active: "report" | "demo" }) {
         <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
           <svg viewBox="0 0 32 32" className="h-7 w-7" aria-hidden>
             <rect width="32" height="32" rx="8" fill="#12151c" />
-            <path d="M9 16.5l4.5 4.5L23 11.5" stroke="#e0472b" strokeWidth="3.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="16" cy="16" r="8.5" stroke="#fff" strokeWidth="2.4" fill="none" /><path d="M16 11v5.5l3.5 2" stroke="#e0472b" strokeWidth="2.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="hidden sm:inline">Clean File</span>
+          <span className="hidden sm:inline">Deal Clock</span>
         </Link>
         <nav className="flex items-center gap-1">
           <Link href="/" className={link(active === "report")}>

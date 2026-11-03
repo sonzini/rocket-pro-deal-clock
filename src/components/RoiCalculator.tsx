@@ -2,65 +2,60 @@
 
 import { useState } from "react";
 import { useLang } from "@/lib/i18n";
-import type { L } from "@/lib/engine";
+import type { L } from "@/lib/types";
 
-// Inputs and defaults come from the finance research (Rocket Q3 2026 8-K, MBA, Optimal Blue).
-// Everything marked as an estimate is meant to be replaced by Rocket's internal numbers in a pilot.
+// Base figures from Rocket's Q3 2026 8-K (Rocket Pro $9.0B closed, 0.70% gain on sale), MBA/Optimal Blue
+// (avg loan ~$386K, purchase ≈80% of locks) and NAR (16% of contracts delayed). Everything a slider
+// touches is an estimate meant to be replaced with Rocket's data in a pilot.
 type Inputs = {
-  loans: number; // Rocket Pro loans closed per year
-  locks: number; // Rocket Pro loans locked per year
-  touches: number; // underwriting touches removed per loan
-  costPerTouch: number; // fulfillment cost per touch ($)
-  pullThrough: number; // extra percentage points of locks that close
-  gosPerLoan: number; // Rocket gain on sale per loan ($)
-  brokerComp: number; // broker compensation per loan ($)
-  brokerHours: number; // broker processor hours saved per loan
+  pullThrough: number; // extra percentage points of purchase locks that close
+  ppMissCut: number; // % of Purchase Priority misses avoided
+  statusCalls: number; // "where are we?" calls avoided per loan
+  referrals: number; // extra purchase loans per year per broker using the agent link
 };
 
-const BASE: Inputs = { loans: 93200, locks: 85000, touches: 0.5, costPerTouch: 375, pullThrough: 1, gosPerLoan: 2705, brokerComp: 7700, brokerHours: 1.5 };
-const SCENARIOS: { name: L; v: Partial<Inputs> }[] = [
-  { name: { en: "Conservative", es: "Conservador" }, v: { touches: 0.25, costPerTouch: 200, pullThrough: 0.5, brokerHours: 0.75 } },
-  { name: { en: "Base", es: "Base" }, v: {} },
-  { name: { en: "Upside", es: "Optimista" }, v: { touches: 1, costPerTouch: 750, pullThrough: 1.8, brokerHours: 2.5 } },
-];
-const HOURLY = 40; // loaded cost of a broker processor hour [estimate]
+const PURCHASE_LOCKS = 68000; // ~80% of ~85K annual Rocket Pro locks
+const GOS = 2705; // Rocket gain on sale per loan (0.70% × $386K)
+const BROKER_COMP = 7700; // ~2% broker compensation per loan
+const PP_LOANS = 20000; // purchase loans/yr in Purchase Priority (estimate)
+const PP_MISS_RATE = 0.1; // share of those missing the 12-day commitment (estimate)
+const CREDIT = 1000; // credit paid when the commitment is missed
+const CALL_COST = 7; // ~10 min of AE/support time per status call
+const ACTIVE_BROKERS = 2000; // e.g. brokers already engaged in Rocket's agent-facing programs (Compass)
 
+const BASE: Inputs = { pullThrough: 1, ppMissCut: 25, statusCalls: 2, referrals: 1 };
+const SCENARIOS: { name: L; v: Inputs }[] = [
+  { name: { en: "Conservative", es: "Conservador" }, v: { pullThrough: 0.5, ppMissCut: 10, statusCalls: 1, referrals: 0.5 } },
+  { name: { en: "Base", es: "Base" }, v: BASE },
+  { name: { en: "Upside", es: "Optimista" }, v: { pullThrough: 1.8, ppMissCut: 40, statusCalls: 3, referrals: 2 } },
+];
 const fmtM = (n: number) => "$" + (n / 1e6).toFixed(1) + "M";
 
 export function RoiCalculator() {
   const { t } = useLang();
   const [s, setS] = useState(1);
   const [v, setV] = useState<Inputs>(BASE);
-  const pick = (i: number) => {
-    setS(i);
-    setV({ ...BASE, ...SCENARIOS[i].v });
-  };
-  const extraClosings = (v.locks * v.pullThrough) / 100;
-  const rocketTouch = v.loans * v.touches * v.costPerTouch;
-  const rocketPT = extraClosings * v.gosPerLoan;
-  const rocket = rocketTouch + rocketPT;
-  const brokerPT = extraClosings * v.brokerComp;
-  const brokerTime = v.loans * v.brokerHours * HOURLY;
-  const broker = brokerPT + brokerTime;
 
-  const slider = ({ k, label, min, max, step, fmt }: { k: keyof Inputs; label: L; min: number; max: number; step: number; fmt: (n: number) => string }) => (
+  const savedClosings = (PURCHASE_LOCKS * v.pullThrough) / 100;
+  const newLoans = ACTIVE_BROKERS * v.referrals;
+  const rocket = {
+    saved: savedClosings * GOS,
+    credits: PP_LOANS * PP_MISS_RATE * (v.ppMissCut / 100) * CREDIT,
+    calls: PURCHASE_LOCKS * v.statusCalls * CALL_COST,
+    growth: newLoans * GOS,
+  };
+  const rocketTotal = rocket.saved + rocket.credits + rocket.calls + rocket.growth;
+  const brokerTotal = (savedClosings + newLoans) * BROKER_COMP;
+
+  const slider = (k: keyof Inputs, label: L, min: number, max: number, step: number, show: (n: number) => string) => (
     <label key={k} className="block">
-      <span className="flex justify-between text-sm">
+      <span className="flex justify-between gap-3 text-sm">
         <span className="text-muted">{t(label)}</span>
-        <span className="num font-semibold">{fmt(v[k])}</span>
+        <span className="num shrink-0 font-semibold">{show(v[k])}</span>
       </span>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={v[k]}
-        onChange={(e) => {
-          setS(-1);
-          setV({ ...v, [k]: parseFloat(e.target.value) });
-        }}
-        className="mt-1 w-full accent-[var(--accent)]"
-      />
+      <input type="range" min={min} max={max} step={step} value={v[k]}
+        onChange={(e) => { setS(-1); setV({ ...v, [k]: parseFloat(e.target.value) }); }}
+        className="mt-1 w-full accent-[var(--accent)]" />
     </label>
   );
 
@@ -69,41 +64,45 @@ export function RoiCalculator() {
       <div className="space-y-4">
         <div className="flex flex-wrap gap-2">
           {SCENARIOS.map((x, i) => (
-            <button key={i} onClick={() => pick(i)} className={`rounded-full border px-3 py-1 text-sm ${s === i ? "border-ink bg-ink text-white" : "border-line hover:border-ink"}`}>
+            <button key={i} onClick={() => { setS(i); setV(x.v); }}
+              className={`rounded-full border px-3 py-1 text-sm ${s === i ? "border-ink bg-ink text-white" : "border-line hover:border-ink"}`}>
               {t(x.name)}
             </button>
           ))}
         </div>
-        {slider({ k: "touches", label: { en: "Underwriting touches removed per loan", es: "Revisiones del analista evitadas por préstamo" }, min: 0, max: 1.5, step: 0.05, fmt: (n) => n.toFixed(2) })}
-        {slider({ k: "costPerTouch", label: { en: "Rocket cost per underwriting touch", es: "Costo de Rocket por revisión" }, min: 100, max: 900, step: 25, fmt: (n) => "$" + n })}
-        {slider({ k: "pullThrough", label: { en: "Extra locked loans that close (pts)", es: "Préstamos bloqueados extra que cierran (pts)" }, min: 0, max: 3, step: 0.1, fmt: (n) => "+" + n.toFixed(1) })}
-        {slider({ k: "brokerHours", label: { en: "Broker processor hours saved per loan", es: "Horas de procesamiento ahorradas al broker por préstamo" }, min: 0, max: 4, step: 0.25, fmt: (n) => n.toFixed(2) + "h" })}
+        {slider("pullThrough", { en: "More purchase locks that close (pts)", es: "Más compras bloqueadas que cierran (pts)" }, 0, 3, 0.1, (n) => "+" + n.toFixed(1))}
+        {slider("ppMissCut", { en: "Purchase Priority misses avoided", es: "Incumplimientos de Purchase Priority evitados" }, 0, 60, 5, (n) => n + "%")}
+        {slider("statusCalls", { en: "“Where are we?” calls avoided per loan", es: "Llamadas de “¿cómo vamos?” evitadas por préstamo" }, 0, 5, 0.5, (n) => n.toFixed(1))}
+        {slider("referrals", { en: "Extra purchase loans per broker per year (agent referrals)", es: "Compras extra por broker por año (referidos de agentes)" }, 0, 4, 0.25, (n) => "+" + n.toFixed(2))}
         <p className="text-xs leading-relaxed text-muted">
           {t({
-            en: `Fixed inputs: ~${v.loans.toLocaleString("en-US")} Rocket Pro loans/yr (Q3 2026 $9.0B × 4 ÷ $386K avg), ~${v.locks.toLocaleString("en-US")} locks/yr, $${v.gosPerLoan.toLocaleString("en-US")} gain on sale per loan (0.70%), $${v.brokerComp.toLocaleString("en-US")} broker comp per loan, $${HOURLY}/h processor cost. Estimates — to be replaced with Rocket's internal data during the pilot.`,
-            es: `Datos fijos: ~${v.loans.toLocaleString("en-US")} préstamos/año de Rocket Pro (US$9.0B del Q3 2026 × 4 ÷ US$386K promedio), ~${v.locks.toLocaleString("en-US")} bloqueos/año, US$${v.gosPerLoan.toLocaleString("en-US")} de margen por préstamo (0,70%), US$${v.brokerComp.toLocaleString("en-US")} de comisión del broker, US$${HOURLY}/h de procesamiento. Son estimaciones: se reemplazan con datos internos de Rocket en el piloto.`,
+            en: `Fixed inputs: ~${PURCHASE_LOCKS.toLocaleString("en-US")} purchase locks/yr, $${GOS.toLocaleString("en-US")} gain on sale and $${BROKER_COMP.toLocaleString("en-US")} broker comp per loan, ${PP_LOANS.toLocaleString("en-US")} Purchase Priority loans with ${PP_MISS_RATE * 100}% missing the 12-day mark ($1,000 credit each), $${CALL_COST} per status call, ${ACTIVE_BROKERS.toLocaleString("en-US")} brokers using the agent link. All estimates.`,
+            es: `Datos fijos: ~${PURCHASE_LOCKS.toLocaleString("en-US")} compras bloqueadas/año, US$${GOS.toLocaleString("en-US")} de margen y US$${BROKER_COMP.toLocaleString("en-US")} de comisión por préstamo, ${PP_LOANS.toLocaleString("en-US")} préstamos en Purchase Priority con ${PP_MISS_RATE * 100}% que no llega a los 12 días (US$1.000 de crédito cada uno), US$${CALL_COST} por llamada, ${ACTIVE_BROKERS.toLocaleString("en-US")} brokers usando el link. Todo estimado.`,
           })}
         </p>
       </div>
       <div className="grid content-start gap-3">
         <div className="rounded-xl bg-ink p-5 text-white">
           <p className="text-xs uppercase tracking-wider text-white/60">{t({ en: "Annual value to Rocket", es: "Valor anual para Rocket" })}</p>
-          <p className="num mt-1 font-display text-4xl font-semibold">{fmtM(rocket)}</p>
-          <p className="mt-2 text-sm text-white/70">
-            {fmtM(rocketTouch)} {t({ en: "less rework", es: "menos retrabajo" })} · {fmtM(rocketPT)} {t({ en: "from", es: "por" })} <span className="num">{Math.round(extraClosings).toLocaleString("en-US")}</span> {t({ en: "extra closings", es: "cierres extra" })}
-          </p>
+          <p className="num mt-1 font-display text-4xl font-semibold">{fmtM(rocketTotal)}</p>
+          <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-white/75">
+            <dt>{t({ en: "Deals saved", es: "Operaciones salvadas" })}</dt><dd className="num text-right">{fmtM(rocket.saved)}</dd>
+            <dt>{t({ en: "New purchase loans", es: "Compras nuevas" })}</dt><dd className="num text-right">{fmtM(rocket.growth)}</dd>
+            <dt>{t({ en: "$1,000 credits avoided", es: "Créditos de US$1.000 evitados" })}</dt><dd className="num text-right">{fmtM(rocket.credits)}</dd>
+            <dt>{t({ en: "Status calls avoided", es: "Llamadas evitadas" })}</dt><dd className="num text-right">{fmtM(rocket.calls)}</dd>
+          </dl>
         </div>
         <div className="rounded-xl border border-line bg-paper p-5">
           <p className="text-xs uppercase tracking-wider text-muted">{t({ en: "Annual value to Rocket Pro brokers", es: "Valor anual para los brokers de Rocket Pro" })}</p>
-          <p className="num mt-1 font-display text-4xl font-semibold">{fmtM(broker)}</p>
+          <p className="num mt-1 font-display text-4xl font-semibold">{fmtM(brokerTotal)}</p>
           <p className="mt-2 text-sm text-muted">
-            {fmtM(brokerPT)} {t({ en: "commission recovered", es: "comisiones recuperadas" })} · {fmtM(brokerTime)} {t({ en: "staff time", es: "tiempo de equipo" })}
+            <span className="num">{Math.round(savedClosings + newLoans).toLocaleString("en-US")}</span> {t({ en: "more closed purchases a year", es: "compras cerradas más por año" })}
           </p>
         </div>
         <p className="text-xs text-muted">
           {t({
-            en: "Not included: more brokers reaching Orbit tier, faster activation of Moving Squad recruits, realtor referrals won by closing on time.",
-            es: "No incluye: más brokers llegando al nivel Orbit, activación más rápida de los brokers que trae Moving Squad, ni referidos de agentes por cerrar en fecha.",
+            en: "Gain on sale is revenue, not profit. Not included: buyers' lock-extension savings, fewer CFPB complaints, and brand value with real estate agents.",
+            es: "El margen es ingreso, no ganancia. No incluye: lo que ahorran los compradores en extensiones de tasa, menos quejas ante la CFPB ni el valor de marca frente a los agentes inmobiliarios.",
           })}
         </p>
       </div>

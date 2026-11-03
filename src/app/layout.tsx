@@ -8,9 +8,9 @@ const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], wei
 
 export const metadata: Metadata = {
   authors: [{ name: "Jorge Mariel" }],
-  title: "Clean File — a Rocket Pro broker friction study",
+  title: "Deal Clock — a Rocket Pro broker study by Jorge Mariel",
   description:
-    "By Jorge Mariel. Research on the Rocket Pro broker workflow, the bottleneck that slows it down, and a working MVP that helps brokers submit once and close on time.",
+    "By Jorge Mariel. Research on the Rocket Pro broker workflow, the bottleneck between the purchase contract and the loan timeline, and a working MVP that lines them up.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -1,13 +1,13 @@
 import { Header } from "@/components/Header";
-import { CleanFile } from "./CleanFile";
+import { DealClock } from "./DealClock";
 
-export const metadata = { title: "Clean File — live MVP" };
+export const metadata = { title: "Deal Clock — live MVP by Jorge Mariel" };
 
 export default function DemoPage() {
   return (
     <>
       <Header active="demo" />
-      <CleanFile />
+      <DealClock />
     </>
   );
 }
