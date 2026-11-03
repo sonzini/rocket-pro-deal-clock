@@ -368,7 +368,7 @@ export function Report() {
             {t({ en: "Research, analysis and MVP by Jorge Mariel, prepared for the Rocket Pro interview process.", es: "Investigación, análisis y MVP de Jorge Mariel, preparado para el proceso de entrevista de Rocket Pro." })}{" "}
             {t({ en: "Independent work; not affiliated with or endorsed by Rocket Companies.", es: "Trabajo independiente; sin afiliación ni aval de Rocket Companies." })}
           </p>
-          <a href="https://github.com/sonzini/rocket-pro-clean-file" target="_blank" rel="noreferrer" className="font-medium text-ink underline-offset-4 hover:underline">
+          <a href="https://github.com/sonzini/rocket-pro-deal-clock" target="_blank" rel="noreferrer" className="font-medium text-ink underline-offset-4 hover:underline">
             {t({ en: "Source code on GitHub", es: "Código en GitHub" })}
           </a>
         </div>

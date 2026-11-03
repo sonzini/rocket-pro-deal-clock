@@ -2,7 +2,7 @@
 
 Research, analysis and MVP by **Jorge Mariel**, prepared for the Rocket Pro interview process.
 
-**Live site:** https://rocket-pro-clean-file.vercel.app · **MVP:** https://rocket-pro-clean-file.vercel.app/demo
+**Live site:** https://rocket-pro-deal-clock.vercel.app · **MVP:** https://rocket-pro-deal-clock.vercel.app/demo
 
 **Thesis:** Rocket Pro sells certainty (same-day conditional approval, clear to close in 12 business days under Purchase Priority). But every purchase runs on two clocks — the contract's contingencies and closing date, and the loan's day 0 / day 1 / day 9 / day 12 milestones — and nobody lines them up. Deadlines collide quietly, agents chase brokers, brokers chase Rocket.
 
