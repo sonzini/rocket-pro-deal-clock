@@ -2,6 +2,8 @@
 
 A research report and working MVP prepared for the Rocket Pro interview process.
 
+**Live site:** https://rocket-pro-clean-file.vercel.app · **MVP:** https://rocket-pro-clean-file.vercel.app/demo
+
 **Thesis:** Rocket Pro has made the part it controls fast (same-day conditional approval, clear-to-close in 12 business days). The bottleneck now sits *before* that clock starts: brokers submit incomplete files, conditions come back in rounds, documents expire, and surprises show up near closing.
 
 **MVP:** *Clean File* is a pre-submission check the broker runs before hitting "Submit":
