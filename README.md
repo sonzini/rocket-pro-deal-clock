@@ -1,5 +1,7 @@
 # Deal Clock — Rocket Pro broker study
 
+[![CI](https://github.com/sonzini/rocket-pro-deal-clock/actions/workflows/ci.yml/badge.svg)](https://github.com/sonzini/rocket-pro-deal-clock/actions/workflows/ci.yml)
+
 Research, analysis and MVP by **Jorge Mariel**, prepared for the Rocket Pro interview process.
 
 **Live site:** https://rocket-pro-deal-clock.vercel.app · **MVP:** https://rocket-pro-deal-clock.vercel.app/demo
@@ -19,12 +21,14 @@ npm install
 npm run dev
 ```
 
+Run the calendar-engine tests with `npm test` (20 cases: business days, federal holidays, the 4 p.m. ET cutoff, Purchase Priority day 1/9/12, TRID Closing Disclosure timing, lock expiry and eligibility).
+
 Open http://localhost:3000 for the report and http://localhost:3000/demo for the MVP. The contract is prefilled relative to today's date and fully editable.
 
 ## How it's built
 
 - Next.js (App Router) + TypeScript + Tailwind CSS, fully static. English / Spanish toggle.
-- `src/lib/dealclock.ts` — the calendar engine: business days, federal holidays, Purchase Priority milestones, TRID timing, lock expiry. Deterministic; no AI, no network calls.
+- `src/lib/dealclock.ts` — the calendar engine (tests in `src/lib/dealclock.test.ts`): business days, federal holidays, Purchase Priority milestones, TRID timing, lock expiry. Deterministic; no AI, no network calls.
 - `src/app/demo/DealClock.tsx` — the MVP UI; `src/app/Report.tsx` — the report; `src/components/RoiCalculator.tsx` — the value model.
 
 ## Caveats

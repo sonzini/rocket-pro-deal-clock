@@ -157,8 +157,8 @@ export function Report() {
           </Tile>
           <Tile n="3" title={{ en: "A letter for the offer", es: "Una carta para la oferta" }}>
             {t({
-              en: "A dated closing plan the broker attaches when the offer is written — so a financed buyer can compete with the 27% who pay cash, on certainty instead of price.",
-              es: "Un plan de cierre con fechas que el broker adjunta al hacer la oferta, para que un comprador con préstamo compita con el 27% que paga en efectivo en certeza, no en precio.",
+              en: "Not just a pre-approval letter (tools like Floify already generate those): a dated closing plan the broker attaches when the offer is written — so a financed buyer can compete with the 27% who pay cash, on certainty instead of price.",
+              es: "No solo una carta de preaprobación (herramientas como Floify ya las generan): un plan de cierre con fechas que el broker adjunta al hacer la oferta, para que un comprador con préstamo compita con el 27% que paga en efectivo en certeza, no en precio.",
             })}
           </Tile>
         </div>
@@ -240,7 +240,7 @@ export function Report() {
         folded
         id="white-space"
         kicker={{ en: "Where the money and the tools go", es: "Hacia dónde van la plata y las herramientas" }}
-        title={{ en: "Everyone builds for the loan file. Almost nobody builds for the deal calendar.", es: "Todos construyen para la carpeta del préstamo. Casi nadie para el calendario de la operación." }}
+        title={{ en: "Everyone builds for the loan file. None of it is checked against Rocket’s own gates.", es: "Todos construyen para la carpeta del préstamo. Nada de eso se compara con los controles propios de Rocket." }}
         intro={{
           en: "Mortgage-tech funding, competitor tools and Rocket's own Big Pitch ideas, placed by who uses them and what they work on.",
           es: "La inversión en mortgage tech, las herramientas de la competencia y las ideas del Big Pitch de Rocket, ubicadas según quién las usa y sobre qué trabajan.",
@@ -254,12 +254,23 @@ export function Report() {
           <Quad items={["Vesta", "Tidalwave", "Candor", "Friday Harbor", "Ocrolus", "Truv", "UWM Underwriting+", "Signal (idea)*"]} note={t({ en: "Crowded — most VC money", es: "Saturado: la mayor parte de la inversión" })} />
           <Quad items={["Right Track (idea)*", "UWM BOLT", "Rocket Pro Navigate", "ARIVE / Jupiter LOS"]} note={t({ en: "Busy — incl. Rocket's own roadmap", es: "Ocupado: incluye la hoja de ruta de Rocket" })} />
           <span className="flex rotate-180 items-center text-xs font-semibold uppercase tracking-wider text-muted [writing-mode:vertical-rl]">{t({ en: "Deal timing & communication", es: "Tiempos y comunicación" })}</span>
-          <Quad items={["Newrez turn-time board", "Pennymac portal", "Rocket Pro Assist", "UWM Mia (rates, payments)"]} note={t({ en: "Status for the broker only", es: "Estado solo para el broker" })} />
-          <div className="rounded-2xl border-2 border-dashed border-accent bg-accent-soft/50 p-4">
-            <p className="font-display text-lg font-semibold">Deal Clock</p>
-            <p className="mt-1 text-sm text-muted">
-              {t({ en: "Contract dates × loan milestones, shared with the real estate agent under the broker's brand. No funded player found.", es: "Fechas del contrato × hitos del préstamo, compartidos con el agente inmobiliario con la marca del broker. No encontramos ningún jugador con inversión." })}
-            </p>
+          <Quad items={["Newrez turn-time board", "Pennymac portal", "Rocket Pro Assist", "UWM Mia (rates, payments)"]} note={t({ en: "Lender tools: status for the broker", es: "Herramientas de prestamistas: estado para el broker" })} />
+          <div className="rounded-2xl border border-line bg-card p-4">
+            <div className="flex flex-wrap gap-1.5">
+              {["Floify partner portal", "Jungo agent portal"].map((x) => (
+                <span key={x} className="rounded-full bg-paper px-2.5 py-1 text-xs">{x}</span>
+              ))}
+            </div>
+            <p className="mt-3 text-xs text-muted">{t({ en: "Broker tools that already show agents where the loan is (milestone updates)", es: "Herramientas para brokers que ya le muestran al agente en qué etapa está el préstamo" })}</p>
+            <div className="mt-3 rounded-xl border-2 border-dashed border-accent bg-accent-soft/50 p-3">
+              <p className="font-display text-lg font-semibold">Deal Clock</p>
+              <p className="mt-1 text-sm text-muted">
+                {t({
+                  en: "The missing piece: check the contract's deadlines against Rocket's own gates (day 1, 9, 12) and warn before they collide — not just report where the loan is.",
+                  es: "La pieza que falta: comparar los plazos del contrato con los controles propios de Rocket (días 1, 9 y 12) y avisar antes de que choquen, no solo informar en qué etapa está el préstamo.",
+                })}
+              </p>
+            </div>
           </div>
         </div>
         <p className="mt-3 text-xs text-muted">{t({ en: "* Big Pitch finalist ideas (2nd and 3rd place) on rocketpro.com/the-big-pitch — pitched by brokers, not shipped products.", es: "* Ideas finalistas del Big Pitch (2.º y 3.er puesto) en rocketpro.com/the-big-pitch: propuestas de brokers, no productos lanzados." })}</p>
@@ -439,7 +450,7 @@ const BOTTLENECKS: { name: L; evidence: L; covered: L; room: number; pick?: bool
     pick: true,
     name: { en: "Contract deadlines vs. loan milestones — nobody lines them up", es: "Plazos del contrato vs. hitos del préstamo: nadie los alinea" },
     evidence: { en: "16% of contracts delayed (NAR); Purchase Priority gates on day 1 and day 9; 43% of buyers ask their agent about the mortgage first.", es: "16% de contratos demorados (NAR); Purchase Priority con controles en los días 1 y 9; 43% de los compradores consulta la hipoteca primero con su agente." },
-    covered: { en: "No shipped product. A Big Pitch entry (“Relay”) pitched a broker closing command center; competitors show status to brokers only.", es: "Ningún producto lanzado. Una propuesta del Big Pitch (“Relay”) planteó un centro de control de cierres para el broker; la competencia muestra el estado solo al broker." },
+    covered: { en: "Partly: broker tools like Floify and Jungo show agents loan milestones, and a Big Pitch entry (“Relay”) pitched a closing command center. None checks contract deadlines against Rocket's gates.", es: "En parte: herramientas como Floify y Jungo le muestran al agente las etapas del préstamo, y una propuesta del Big Pitch (“Relay”) planteó un centro de control de cierres. Ninguna compara los plazos del contrato con los controles de Rocket." },
     room: 5,
   },
   {
@@ -478,7 +489,7 @@ const WINS: L[] = [
   { en: "Grows purchase volume — Rocket's stated priority as refinances fall — through the people who send buyers: real estate agents.", es: "Hace crecer las compras, la prioridad declarada de Rocket mientras caen las refinanciaciones, a través de quienes mandan compradores: los agentes inmobiliarios." },
   { en: "Gets more loans through Purchase Priority's day-1 and day-9 gates, so Rocket keeps the speed promise it advertises.", es: "Hace que más préstamos pasen los controles de los días 1 y 9 de Purchase Priority, para que Rocket cumpla la promesa de velocidad que anuncia." },
   { en: "A visible no-poaching proof: the agent sees the broker's brand, never Rocket retail.", es: "Una prueba visible de no quitar clientes: el agente ve la marca del broker, nunca la de Rocket retail." },
-  { en: "Something no wholesale competitor offers: UWM, Newrez and Pennymac show status to the broker only.", es: "Algo que ningún competidor mayorista ofrece: UWM, Newrez y Pennymac muestran el estado solo al broker." },
+  { en: "Goes beyond what exists: UWM, Newrez and Pennymac show status to the broker, and tools like Floify or Jungo send agents milestone updates — none warns that a contract date will collide with Rocket's gates.", es: "Va más allá de lo que existe: UWM, Newrez y Pennymac muestran el estado al broker, y herramientas como Floify o Jungo le mandan avances al agente; ninguna avisa que una fecha del contrato va a chocar con los controles de Rocket." },
   { en: "Rules-based and explainable: no AI decisions, no borrower financial data shared.", es: "Basado en reglas y explicable: sin decisiones de IA y sin compartir datos financieros del cliente." },
 ];
 
@@ -530,7 +541,7 @@ const TRACKS: { name: L; body: L }[] = [
   { name: { en: "Finance", es: "Finanzas" }, body: { en: "Cost to originate (MBA), margins by channel, pull-through, value model.", es: "Costo de originación (MBA), márgenes por canal, tasa de cierre, modelo de valor." } },
   { name: { en: "Mortgage operations", es: "Operaciones hipotecarias" }, body: { en: "18-step wholesale workflow, TRID timing, appraisal and lock mechanics.", es: "Flujo mayorista de 18 pasos, plazos TRID, mecánica de tasación y bloqueo." } },
   { name: { en: "Real estate", es: "Real estate" }, body: { en: "Contract delays and cancellations (NAR, Redfin), agent–broker dynamics, Compass.", es: "Demoras y cancelaciones de contratos (NAR, Redfin), relación agente–broker, Compass." } },
-  { name: { en: "Startups & mortgage tech", es: "Startups y mortgage tech" }, body: { en: "Where funding goes — and the quadrant nobody serves.", es: "Hacia dónde va la inversión, y el cuadrante que nadie atiende." } },
+  { name: { en: "Startups & mortgage tech", es: "Startups y mortgage tech" }, body: { en: "Where funding goes, what already exists, and what is still missing.", es: "Hacia dónde va la inversión, qué ya existe y qué sigue faltando." } },
   { name: { en: "Voice of broker & borrower", es: "Voz del broker y del cliente" }, body: { en: "~230 Reddit comments, ~95 YouTube videos, 714 CFPB complaints, Trustpilot.", es: "~230 comentarios en Reddit, ~95 videos de YouTube, 714 quejas ante la CFPB, Trustpilot." } },
   { name: { en: "Cross-check & red team", es: "Verificación y contrapunto" }, body: { en: "Perplexity searches, and all seven tracks re-ranking the options to avoid the obvious answer.", es: "Búsquedas en Perplexity, y las siete líneas reordenando las opciones para evitar la respuesta obvia." } },
 ];

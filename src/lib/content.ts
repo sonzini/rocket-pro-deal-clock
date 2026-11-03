@@ -40,6 +40,8 @@ export const VOICES: { quote: string; who: L; source: string; url: string }[] = 
 ];
 
 export const SOURCES: { title: string; url: string }[] = [
+  { title: "Floify — Loan status updates and Partner Portal for real estate agents", url: "https://floify.com/blog/loan-officers-improve-referral" },
+  { title: "Jungo — Agent Portal for referrals & updates", url: "https://ijungo.com/jungo-agent-portal/" },
   { title: "Rocket Pro blog — How our top brokers close loans up to 5 days faster", url: "https://www.rocketpro.com/blog/how-our-top-brokers-close-loans-up-to-5-days-faster" },
   { title: "Florida Realtors — Buyers turn to agents for mortgage information (43% vs 29%)", url: "https://www.floridarealtors.org/news-media/news-articles/2026/10/buyers-turn-agents-mortgage-information" },
   { title: "MPA — Pending sales at 12-year low; 14.5% of contracts canceled (Redfin)", url: "https://www.mpamag.com/us/mortgage-industry/market-updates/pending-home-sales-sink-to-12-year-low-after-mortgage-rates-soar-past-7/593311" },
