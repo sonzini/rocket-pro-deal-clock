@@ -110,7 +110,8 @@ export function Report() {
           </div>
         </div>
 
-        <h3 className="mt-10 font-semibold">{t({ en: "Six frictions we weighed — and why this one", es: "Seis fricciones que evaluamos, y por qué esta" })}</h3>
+        <details className="group mt-8">
+        <summary className="cursor-pointer list-none font-semibold text-accent underline-offset-4 hover:underline">{t({ en: "See the six frictions we weighed — and why this one ↓", es: "Ver las seis fricciones que evaluamos, y por qué esta ↓" })}</summary>
         <div className="mt-3 overflow-x-auto rounded-2xl border border-line bg-card">
           <table className="w-full min-w-[720px] text-left text-sm">
             <thead className="bg-paper text-xs uppercase tracking-wider text-muted">
@@ -136,63 +137,7 @@ export function Report() {
             </tbody>
           </table>
         </div>
-      </Section>
-
-      {/* ---------------- White space ---------------- */}
-      <Section
-        id="white-space"
-        kicker={{ en: "Where the money and the tools go", es: "Hacia dónde van la plata y las herramientas" }}
-        title={{ en: "Everyone builds for the loan file. Almost nobody builds for the deal calendar.", es: "Todos construyen para la carpeta del préstamo. Casi nadie para el calendario de la operación." }}
-        intro={{
-          en: "Mortgage-tech funding, competitor tools and Rocket's own Big Pitch ideas, placed by who uses them and what they work on.",
-          es: "La inversión en mortgage tech, las herramientas de la competencia y las ideas del Big Pitch de Rocket, ubicadas según quién las usa y sobre qué trabajan.",
-        }}
-      >
-        <div className="grid grid-cols-[auto_1fr_1fr] gap-2 text-sm">
-          <span />
-          <span className="pb-1 text-center text-xs font-semibold uppercase tracking-wider text-muted">{t({ en: "Lender / underwriting side", es: "Lado del prestamista / análisis" })}</span>
-          <span className="pb-1 text-center text-xs font-semibold uppercase tracking-wider text-muted">{t({ en: "Broker · agent · borrower side", es: "Lado broker · agente · cliente" })}</span>
-          <span className="flex rotate-180 items-center text-xs font-semibold uppercase tracking-wider text-muted [writing-mode:vertical-rl]">{t({ en: "Documents & conditions", es: "Documentos y condiciones" })}</span>
-          <Quad items={["Vesta", "Tidalwave", "Candor", "Friday Harbor", "Ocrolus", "Truv", "UWM Underwriting+", "Signal (idea)*"]} note={t({ en: "Crowded — most VC money", es: "Saturado: la mayor parte de la inversión" })} />
-          <Quad items={["Right Track (idea)*", "UWM BOLT", "Rocket Pro Navigate", "ARIVE / Jupiter LOS"]} note={t({ en: "Busy — incl. Rocket's own roadmap", es: "Ocupado: incluye la hoja de ruta de Rocket" })} />
-          <span className="flex rotate-180 items-center text-xs font-semibold uppercase tracking-wider text-muted [writing-mode:vertical-rl]">{t({ en: "Deal timing & communication", es: "Tiempos y comunicación" })}</span>
-          <Quad items={["Newrez turn-time board", "Pennymac portal", "Rocket Pro Assist", "UWM Mia (rates, payments)"]} note={t({ en: "Status for the broker only", es: "Estado solo para el broker" })} />
-          <div className="rounded-2xl border-2 border-dashed border-accent bg-accent-soft/50 p-4">
-            <p className="font-display text-lg font-semibold">Deal Clock</p>
-            <p className="mt-1 text-sm text-muted">
-              {t({ en: "Contract dates × loan milestones, shared with the real estate agent under the broker's brand. No funded player found.", es: "Fechas del contrato × hitos del préstamo, compartidos con el agente inmobiliario con la marca del broker. No encontramos ningún jugador con inversión." })}
-            </p>
-          </div>
-        </div>
-        <p className="mt-3 text-xs text-muted">{t({ en: "* Big Pitch finalist ideas (2nd and 3rd place) on rocketpro.com/the-big-pitch — pitched by brokers, not shipped products.", es: "* Ideas finalistas del Big Pitch (2.º y 3.er puesto) en rocketpro.com/the-big-pitch: propuestas de brokers, no productos lanzados." })}</p>
-      </Section>
-
-      {/* ---------------- Voices ---------------- */}
-      <Section
-        id="voices"
-        kicker={{ en: "What brokers and borrowers say", es: "Lo que dicen brokers y clientes" }}
-        title={{ en: "Rocket wins on price and ease. It loses minutes — and trust — in the last week.", es: "Rocket gana en precio y facilidad. Pierde minutos, y confianza, en la última semana." }}
-        intro={{
-          en: "~230 broker comments, ~95 YouTube videos (40 from Rocket Pro's own channel), 714 CFPB complaints and trade-press interviews.",
-          es: "~230 comentarios de brokers, ~95 videos de YouTube (40 del canal oficial de Rocket Pro), 714 quejas ante la CFPB y entrevistas en prensa del sector.",
-        }}
-      >
-        <div className="mb-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
-          <Stat value="714" label={{ en: "consumer complaints about applying for or closing a Rocket mortgage filed with the CFPB since Jan 2025", es: "quejas de clientes sobre la solicitud o el cierre de un préstamo de Rocket ante la CFPB desde enero de 2025" }} />
-          <Stat value="39%" label={{ en: "are delays or trying to get an issue fixed — UWM: 38%. An industry problem, not just Rocket's", es: "son por demoras o por no poder resolver un problema; UWM: 38%. Es un problema de la industria, no solo de Rocket" }} />
-          <Stat value="4.4★" label={{ en: "Rocket Mortgage on Trustpilot (42,540 reviews): the friction lives in the process, not the brand", es: "Rocket Mortgage en Trustpilot (42.540 opiniones): la fricción está en el proceso, no en la marca" }} />
-        </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {VOICES.map((v, i) => (
-            <figure key={i} className="flex flex-col rounded-2xl border border-line bg-card p-5">
-              <blockquote className="font-display text-lg leading-snug">“{v.quote}”</blockquote>
-              <figcaption className="mt-auto pt-4 text-xs text-muted">
-                {t(v.who)} ·{" "}
-                <a href={v.url} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-ink">{v.source}</a>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        </details>
       </Section>
 
       {/* ---------------- Solution ---------------- */}
@@ -241,8 +186,87 @@ export function Report() {
         </div>
       </Section>
 
+      {/* ---------------- Business case ---------------- */}
+      <Section
+        id="business-case"
+        kicker={{ en: "Business case", es: "Caso de negocio" }}
+        title={{ en: "Purchase is the market that's holding up. On-time closings are how brokers win it.", es: "La compra es el mercado que se sostiene. Cerrar en fecha es cómo los brokers la ganan." }}
+        intro={{
+          en: "Rocket Pro closed $9.0B in Q3 2026, down 19% from Q2, at a ~0.70% gain-on-sale margin — so the levers are volume and avoided waste: deals saved, new purchase referrals, status calls not taken. Freddie Mac estimates faster, cleaner files lift pull-through ~1.8%. Move the sliders; every input is an assumption.",
+          es: "Rocket Pro cerró US$9.000M en el Q3 2026, 19% menos que en el Q2, con ~0,70% de margen; así que las palancas son volumen y desperdicio evitado: operaciones salvadas, referidos nuevos, llamadas que no se atienden. Freddie Mac estima que carpetas más rápidas y limpias suben ~1,8% los cierres. Mové los controles; cada dato es un supuesto.",
+        }}
+      >
+        <RoiCalculator />
+      </Section>
+
+      {/* ---------------- Appendix ---------------- */}
+      <section className="border-b border-line bg-card/60">
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          <p className="text-sm font-medium uppercase tracking-widest text-accent">{t({ en: "Go deeper", es: "Para profundizar" })}</p>
+          <p className="mt-2 max-w-3xl text-muted">{t({ en: "The evidence, the market map, the pilot plan, the questions I'd bring to the interview, and every source. Open what you need.", es: "La evidencia, el mapa del mercado, el plan del piloto, las preguntas que llevaría a la entrevista y todas las fuentes. Abrí lo que necesites." })}</p>
+        </div>
+      </section>
+      {/* ---------------- Voices ---------------- */}
+      <Section
+        folded
+        id="voices"
+        kicker={{ en: "What brokers and borrowers say", es: "Lo que dicen brokers y clientes" }}
+        title={{ en: "Rocket wins on price and ease. It loses minutes — and trust — in the last week.", es: "Rocket gana en precio y facilidad. Pierde minutos, y confianza, en la última semana." }}
+        intro={{
+          en: "~230 broker comments, ~95 YouTube videos (40 from Rocket Pro's own channel), 714 CFPB complaints and trade-press interviews.",
+          es: "~230 comentarios de brokers, ~95 videos de YouTube (40 del canal oficial de Rocket Pro), 714 quejas ante la CFPB y entrevistas en prensa del sector.",
+        }}
+      >
+        <div className="mb-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
+          <Stat value="714" label={{ en: "consumer complaints about applying for or closing a Rocket mortgage filed with the CFPB since Jan 2025", es: "quejas de clientes sobre la solicitud o el cierre de un préstamo de Rocket ante la CFPB desde enero de 2025" }} />
+          <Stat value="39%" label={{ en: "are delays or trying to get an issue fixed — UWM: 38%. An industry problem, not just Rocket's", es: "son por demoras o por no poder resolver un problema; UWM: 38%. Es un problema de la industria, no solo de Rocket" }} />
+          <Stat value="4.4★" label={{ en: "Rocket Mortgage on Trustpilot (42,540 reviews): the friction lives in the process, not the brand", es: "Rocket Mortgage en Trustpilot (42.540 opiniones): la fricción está en el proceso, no en la marca" }} />
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {VOICES.map((v, i) => (
+            <figure key={i} className="flex flex-col rounded-2xl border border-line bg-card p-5">
+              <blockquote className="font-display text-lg leading-snug">“{v.quote}”</blockquote>
+              <figcaption className="mt-auto pt-4 text-xs text-muted">
+                {t(v.who)} ·{" "}
+                <a href={v.url} target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-ink">{v.source}</a>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </Section>
+
+      {/* ---------------- White space ---------------- */}
+      <Section
+        folded
+        id="white-space"
+        kicker={{ en: "Where the money and the tools go", es: "Hacia dónde van la plata y las herramientas" }}
+        title={{ en: "Everyone builds for the loan file. Almost nobody builds for the deal calendar.", es: "Todos construyen para la carpeta del préstamo. Casi nadie para el calendario de la operación." }}
+        intro={{
+          en: "Mortgage-tech funding, competitor tools and Rocket's own Big Pitch ideas, placed by who uses them and what they work on.",
+          es: "La inversión en mortgage tech, las herramientas de la competencia y las ideas del Big Pitch de Rocket, ubicadas según quién las usa y sobre qué trabajan.",
+        }}
+      >
+        <div className="grid grid-cols-[auto_1fr_1fr] gap-2 text-sm">
+          <span />
+          <span className="pb-1 text-center text-xs font-semibold uppercase tracking-wider text-muted">{t({ en: "Lender / underwriting side", es: "Lado del prestamista / análisis" })}</span>
+          <span className="pb-1 text-center text-xs font-semibold uppercase tracking-wider text-muted">{t({ en: "Broker · agent · borrower side", es: "Lado broker · agente · cliente" })}</span>
+          <span className="flex rotate-180 items-center text-xs font-semibold uppercase tracking-wider text-muted [writing-mode:vertical-rl]">{t({ en: "Documents & conditions", es: "Documentos y condiciones" })}</span>
+          <Quad items={["Vesta", "Tidalwave", "Candor", "Friday Harbor", "Ocrolus", "Truv", "UWM Underwriting+", "Signal (idea)*"]} note={t({ en: "Crowded — most VC money", es: "Saturado: la mayor parte de la inversión" })} />
+          <Quad items={["Right Track (idea)*", "UWM BOLT", "Rocket Pro Navigate", "ARIVE / Jupiter LOS"]} note={t({ en: "Busy — incl. Rocket's own roadmap", es: "Ocupado: incluye la hoja de ruta de Rocket" })} />
+          <span className="flex rotate-180 items-center text-xs font-semibold uppercase tracking-wider text-muted [writing-mode:vertical-rl]">{t({ en: "Deal timing & communication", es: "Tiempos y comunicación" })}</span>
+          <Quad items={["Newrez turn-time board", "Pennymac portal", "Rocket Pro Assist", "UWM Mia (rates, payments)"]} note={t({ en: "Status for the broker only", es: "Estado solo para el broker" })} />
+          <div className="rounded-2xl border-2 border-dashed border-accent bg-accent-soft/50 p-4">
+            <p className="font-display text-lg font-semibold">Deal Clock</p>
+            <p className="mt-1 text-sm text-muted">
+              {t({ en: "Contract dates × loan milestones, shared with the real estate agent under the broker's brand. No funded player found.", es: "Fechas del contrato × hitos del préstamo, compartidos con el agente inmobiliario con la marca del broker. No encontramos ningún jugador con inversión." })}
+            </p>
+          </div>
+        </div>
+        <p className="mt-3 text-xs text-muted">{t({ en: "* Big Pitch finalist ideas (2nd and 3rd place) on rocketpro.com/the-big-pitch — pitched by brokers, not shipped products.", es: "* Ideas finalistas del Big Pitch (2.º y 3.er puesto) en rocketpro.com/the-big-pitch: propuestas de brokers, no productos lanzados." })}</p>
+      </Section>
+
       {/* ---------------- Future press release ---------------- */}
-      <Section id="press" kicker={{ en: "Working backwards", es: "Trabajando hacia atrás" }} title={{ en: "The press release we'd want to write in a year", es: "El comunicado de prensa que querríamos escribir en un año" }}>
+      <Section folded id="press" kicker={{ en: "Working backwards", es: "Trabajando hacia atrás" }} title={{ en: "The press release we'd want to write in a year", es: "El comunicado de prensa que querríamos escribir en un año" }}>
         <article className="rounded-2xl border border-line bg-card p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted">{t({ en: "Hypothetical · Detroit · November 2027", es: "Hipotético · Detroit · noviembre 2027" })}</p>
           <h3 className="mt-2 font-display text-2xl font-semibold leading-snug sm:text-3xl">
@@ -265,21 +289,8 @@ export function Report() {
         </article>
       </Section>
 
-      {/* ---------------- Business case ---------------- */}
-      <Section
-        id="business-case"
-        kicker={{ en: "Business case", es: "Caso de negocio" }}
-        title={{ en: "Purchase is the market that's holding up. On-time closings are how brokers win it.", es: "La compra es el mercado que se sostiene. Cerrar en fecha es cómo los brokers la ganan." }}
-        intro={{
-          en: "Rocket Pro closed $9.0B in Q3 2026, down 19% from Q2, at a ~0.70% gain-on-sale margin — so the levers are volume and avoided waste: deals saved, new purchase referrals, status calls not taken. Freddie Mac estimates faster, cleaner files lift pull-through ~1.8%. Move the sliders; every input is an assumption.",
-          es: "Rocket Pro cerró US$9.000M en el Q3 2026, 19% menos que en el Q2, con ~0,70% de margen; así que las palancas son volumen y desperdicio evitado: operaciones salvadas, referidos nuevos, llamadas que no se atienden. Freddie Mac estima que carpetas más rápidas y limpias suben ~1,8% los cierres. Mové los controles; cada dato es un supuesto.",
-        }}
-      >
-        <RoiCalculator />
-      </Section>
-
       {/* ---------------- Pilot ---------------- */}
-      <Section id="pilot" kicker={{ en: "Pilot & roadmap", es: "Piloto y hoja de ruta" }} title={{ en: "Prove it in one purchase season, with a control group", es: "Probarlo en una temporada de compras, con grupo de control" }}>
+      <Section folded id="pilot" kicker={{ en: "Pilot & roadmap", es: "Piloto y hoja de ruta" }} title={{ en: "Prove it in one purchase season, with a control group", es: "Probarlo en una temporada de compras, con grupo de control" }}>
         <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
           <div className="rounded-2xl border border-line bg-card p-6">
             <h3 className="font-semibold">{t({ en: "Pilot design", es: "Diseño del piloto" })}</h3>
@@ -323,7 +334,7 @@ export function Report() {
       </Section>
 
       {/* ---------------- Questions ---------------- */}
-      <Section id="questions" kicker={{ en: "What I'd ask Rocket", es: "Lo que le preguntaría a Rocket" }} title={{ en: "Five questions the public data can't answer", es: "Cinco preguntas que los datos públicos no responden" }}>
+      <Section folded id="questions" kicker={{ en: "What I'd ask Rocket", es: "Lo que le preguntaría a Rocket" }} title={{ en: "Five questions the public data can't answer", es: "Cinco preguntas que los datos públicos no responden" }}>
         <ol className="grid gap-3 md:grid-cols-2">
           {QUESTIONS.map((q, i) => (
             <li key={i} className="flex gap-4 rounded-2xl border border-line bg-card p-5">
@@ -335,7 +346,7 @@ export function Report() {
       </Section>
 
       {/* ---------------- Method ---------------- */}
-      <Section id="method" kicker={{ en: "How this was researched", es: "Cómo se investigó" }} title={{ en: "Eight research tracks, one question", es: "Ocho líneas de investigación, una pregunta" }}>
+      <Section folded id="method" kicker={{ en: "How this was researched", es: "Cómo se investigó" }} title={{ en: "Eight research tracks, one question", es: "Ocho líneas de investigación, una pregunta" }}>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {TRACKS.map((tr, i) => (
             <div key={i} className="rounded-xl border border-line bg-card p-4">
@@ -526,8 +537,26 @@ const TRACKS: { name: L; body: L }[] = [
 
 /* ---------------- Small components ---------------- */
 
-function Section({ id, kicker, title, intro, children }: { id: string; kicker: L; title: L; intro?: L; children: React.ReactNode }) {
+function Section({ id, kicker, title, intro, children, folded }: { id: string; kicker: L; title: L; intro?: L; children: React.ReactNode; folded?: boolean }) {
   const { t } = useLang();
+  if (folded)
+    return (
+      <section id={id} className="scroll-mt-16 border-b border-line">
+        <details className="group mx-auto max-w-6xl px-4 sm:px-6">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-7">
+            <span>
+              <span className="block text-xs font-medium uppercase tracking-widest text-accent">{t(kicker)}</span>
+              <span className="mt-1 block max-w-3xl font-display text-xl font-semibold leading-snug sm:text-2xl">{t(title)}</span>
+            </span>
+            <span className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-line text-lg transition group-open:rotate-45">+</span>
+          </summary>
+          <div className="pb-14">
+            {intro && <p className="max-w-3xl text-muted">{t(intro)}</p>}
+            <div className="mt-6">{children}</div>
+          </div>
+        </details>
+      </section>
+    );
   return (
     <section id={id} className="scroll-mt-16 border-b border-line">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
