@@ -70,7 +70,9 @@ export function CleanFile() {
   return (
     <div className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-6">
       <div className="max-w-3xl">
-        <p className="text-sm font-medium uppercase tracking-widest text-accent">{t({ en: "Working MVP", es: "MVP funcionando" })}</p>
+        <p className="text-sm font-medium uppercase tracking-widest text-accent">
+          {t({ en: "Working MVP", es: "MVP funcionando" })} <span className="normal-case tracking-normal text-muted">· {t({ en: "by", es: "de" })} Jorge Mariel</span>
+        </p>
         <h1 className="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl">
           {t({ en: "Clean File: check the loan before the clock starts", es: "Clean File: revisá el préstamo antes de que arranque el reloj" })}
         </h1>

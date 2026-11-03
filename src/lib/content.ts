@@ -40,6 +40,12 @@ export const VOICES: { quote: string; who: L; source: string; url: string }[] = 
 ];
 
 export const SOURCES: { title: string; url: string }[] = [
+  { title: "Rocket Pro — Orbit & Purchase Priority terms (12-day CTC eligibility)", url: "https://www.rocketpro.com/orbit" },
+  { title: "Rocket Pro — The Big Pitch (Quick Counter, Right Track, Signal)", url: "https://www.rocketpro.com/the-big-pitch" },
+  { title: "Rocket Pro — Moving Squad", url: "https://www.rocketpro.com/moving-squad" },
+  { title: "Rocket Pro — Power Play", url: "https://www.rocketpro.com/power-play" },
+  { title: "CFPB Consumer Complaint Database (mortgage, Rocket & UWM, 2025–2026)", url: "https://www.consumerfinance.gov/data-research/consumer-complaints/" },
+  { title: "Trustpilot — Rocket Mortgage reviews", url: "https://www.trustpilot.com/review/rocketmortgage.com" },
   { title: "Rocket Companies Q3 2026 results (SEC 8-K, Ex. 99.1)", url: "https://www.sec.gov/Archives/edgar/data/0001805284/000180528426000121/rkt-093020268xkex991earnin.htm" },
   { title: "Rocket Companies Q2 2026 results (SEC 8-K, Ex. 99.1)", url: "https://www.sec.gov/Archives/edgar/data/0001805284/000180528426000082/rkt-063020268xkex991earnin.htm" },
   { title: "Rocket Q3 2025 earnings call transcript (broker underwriting agent)", url: "https://s205.q4cdn.com/636124780/files/doc_events/2025/Oct/30/CORRECTED-TRANSCRIPT_-Rocket-Cos-Inc-RKT-US-Q3-2025-Earnings-Call-30-October-2025-4_30-VF.pdf" },

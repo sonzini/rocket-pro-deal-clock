@@ -17,6 +17,10 @@ export function Report() {
           <p className="text-sm font-medium uppercase tracking-widest text-accent">
             {t({ en: "Rocket Pro · broker experience study · November 2026", es: "Rocket Pro · estudio de experiencia del broker · noviembre 2026" })}
           </p>
+          <p className="mt-3 text-sm text-muted">
+            {t({ en: "Research, analysis and MVP by", es: "Investigación, análisis y MVP de" })}{" "}
+            <span className="font-semibold text-ink">Jorge Mariel</span>
+          </p>
           <h1 className="mt-4 max-w-4xl font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-6xl">
             {t({
               en: "Rocket Pro already sped up the part it controls. The bottleneck now sits before the clock starts.",
@@ -109,6 +113,22 @@ export function Report() {
             es: "La revisión con IA de Rocket (un agente interno que bajó una revisión de 4 horas a menos de 15 minutos) corre después de que el broker envía. Cada condición que encuentra igual manda al broker de vuelta al cliente y reinicia la espera.",
           })}
         </Callout>
+        <div className="mt-4 rounded-2xl border border-line bg-card p-5 text-sm leading-relaxed">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t({ en: "From Rocket Pro's own fine print", es: "De la letra chica del propio Rocket Pro" })}</p>
+          <p className="mt-2">
+            {t({
+              en: "The 12-day clear-to-close only applies if the broker includes “all documentation and conditions required for conditional approval at the time of Full Package Submission”, orders the appraisal within 24 hours, and clears title, tax and appraisal items by day 9. The terms add that the broker is “solely responsible” for timely documentation.",
+              es: "La aprobación final en 12 días solo aplica si el broker incluye “toda la documentación y las condiciones requeridas para la aprobación condicional al momento del envío completo”, pide la tasación dentro de las 24 horas y resuelve título, impuestos y tasación para el día 9. Los términos agregan que el broker es el “único responsable” de entregar la documentación a tiempo.",
+            })}
+          </p>
+          <p className="mt-2 text-muted">
+            {t({
+              en: "In other words: Rocket's fastest lane is gated by exactly the step that has no tool today. Clean File is a checklist for getting into that lane.",
+              es: "Es decir: el carril más rápido de Rocket depende justo del paso que hoy no tiene herramienta. Clean File es la lista de control para entrar en ese carril.",
+            })}{" "}
+            <a href="https://www.rocketpro.com/orbit" target="_blank" rel="noreferrer" className="underline underline-offset-2 hover:text-ink">rocketpro.com/orbit</a>
+          </p>
+        </div>
       </Section>
 
       {/* ---------------- Bottlenecks ---------------- */}
@@ -160,6 +180,11 @@ export function Report() {
           es: "~230 comentarios de brokers, ~95 videos de YouTube (40 del canal oficial de Rocket Pro) y entrevistas en prensa del sector. Los brokers elogian el precio y la facilidad de Rocket; la queja operativa principal son condiciones que reaparecen justo antes del cierre. La mayoría nace en lo que no se juntó, justificó o actualizó antes del envío.",
         }}
       >
+        <div className="mb-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
+          <Stat value="714" label={{ en: "consumer complaints about applying for or closing a Rocket mortgage filed with the CFPB since Jan 2025", es: "quejas de clientes sobre la solicitud o el cierre de un préstamo de Rocket presentadas ante la CFPB desde enero de 2025" }} />
+          <Stat value="39%" label={{ en: "are about delays or not being able to get an issue fixed — the same share as UWM (38%): an industry problem, not a Rocket one", es: "son por demoras o por no poder resolver un problema con la empresa; igual que UWM (38%): es un problema de la industria, no solo de Rocket" }} />
+          <Stat value="4.4★" label={{ en: "Rocket Mortgage on Trustpilot (42,540 reviews): borrowers like Rocket — the friction lives in the process, not the brand", es: "Rocket Mortgage en Trustpilot (42.540 opiniones): a los clientes les gusta Rocket; la fricción está en el proceso, no en la marca" }} />
+        </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {VOICES.map((v, i) => (
             <figure key={i} className="flex flex-col rounded-2xl border border-line bg-card p-5">
@@ -249,8 +274,8 @@ export function Report() {
             <h3 className="font-semibold">{t({ en: "Where it lives", es: "Dónde vive" })}</h3>
             <p className="mt-3 text-sm text-muted">
               {t({
-                en: "Not a new portal. Rocket already learned that brokers want tools “where they are”: it ships as a step inside Rocket Pro Navigate, Jupiter and the ARIVE submission flow — the moment before “Submit”. It complements the broker-designed tools announced at RPX (Signal and Right Track) by acting even earlier: before a risk exists, not after.",
-                es: "No es un portal nuevo. Rocket ya aprendió que los brokers quieren herramientas “donde ya trabajan”: se integra como un paso dentro de Rocket Pro Navigate, Jupiter y el flujo de envío de ARIVE, justo antes de “Enviar”. Complementa las herramientas diseñadas por brokers que se anunciaron en RPX (Signal y Right Track) actuando aún antes: antes de que el riesgo exista, no después.",
+                en: "Not a new portal. Rocket already learned that brokers want tools “where they are”: it ships as a step inside Rocket Pro Navigate, Jupiter and the ARIVE submission flow — the moment before “Submit”. It is a working first step of what brokers themselves asked for at RPX: the runner-up idea, Right Track, proposes analyzing files up front to catch documentation gaps, and Signal surfaces risks in condition lists. Clean File can be piloted now and grow into both.",
+                es: "No es un portal nuevo. Rocket ya aprendió que los brokers quieren herramientas “donde ya trabajan”: se integra como un paso dentro de Rocket Pro Navigate, Jupiter y el flujo de envío de ARIVE, justo antes de “Enviar”. Es un primer paso funcionando de lo que los propios brokers pidieron en RPX: la idea que salió segunda, Right Track, propone analizar las carpetas desde el inicio para detectar faltantes de documentación, y Signal detecta riesgos en las listas de condiciones. Clean File se puede probar ya y crecer hacia ambas.",
               })}
             </p>
             <Link href="/demo" className="mt-4 inline-block text-sm font-semibold text-accent underline-offset-4 hover:underline">
@@ -329,8 +354,8 @@ export function Report() {
         </div>
         <p className="mt-4 max-w-3xl text-sm text-muted">
           {t({
-            en: "Caveats: rocketpro.com blocks automated reading, so some Rocket Pro statements come from trade press (HousingWire, MPA, National Mortgage News) and SEC filings. Competitor and Rocket metrics are company-reported. Financial estimates are labeled and meant to be replaced with Rocket's internal data in the pilot.",
-            es: "Salvedades: rocketpro.com bloquea la lectura automática, así que algunas afirmaciones de Rocket Pro vienen de prensa del sector (HousingWire, MPA, National Mortgage News) y de documentos ante la SEC. Las métricas de Rocket y de la competencia son informadas por las propias empresas. Las estimaciones financieras están marcadas y se reemplazan con datos internos de Rocket en el piloto.",
+            en: "Rocket Pro program details (Orbit, Purchase Priority terms, Moving Squad, Big Pitch, Power Play) were read directly on rocketpro.com. Caveats: Rocket and competitor metrics are company-reported; forum and review evidence is self-selected; CFPB complaints come from borrowers and cover all Rocket channels. Financial estimates are labeled and meant to be replaced with Rocket's internal data in the pilot.",
+            es: "Los detalles de los programas de Rocket Pro (Orbit, términos de Purchase Priority, Moving Squad, Big Pitch, Power Play) se leyeron directamente en rocketpro.com. Salvedades: las métricas de Rocket y de la competencia son informadas por las propias empresas; la evidencia de foros y opiniones es autoseleccionada; las quejas de la CFPB son de clientes y abarcan todos los canales de Rocket. Las estimaciones financieras están marcadas y se reemplazan con datos internos de Rocket en el piloto.",
           })}
         </p>
         <details className="mt-6 rounded-2xl border border-line bg-card p-5">
@@ -350,7 +375,7 @@ export function Report() {
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>
-            {t({ en: "Prepared by Jorge Mariel for the Rocket Pro interview process.", es: "Preparado por Jorge Mariel para el proceso de entrevista de Rocket Pro." })}{" "}
+            {t({ en: "Research, analysis and MVP by Jorge Mariel, prepared for the Rocket Pro interview process.", es: "Investigación, análisis y MVP de Jorge Mariel, preparado para el proceso de entrevista de Rocket Pro." })}{" "}
             {t({ en: "Independent work; not affiliated with or endorsed by Rocket Companies.", es: "Trabajo independiente; sin afiliación ni aval de Rocket Companies." })}
           </p>
           <a href="https://github.com/sonzini/rocket-pro-clean-file" target="_blank" rel="noreferrer" className="font-medium text-ink underline-offset-4 hover:underline">
@@ -369,10 +394,10 @@ const BOTTLENECKS: { name: L; evidence: L; covered: L; prize: number; pick?: boo
     pick: true,
     name: { en: "Incomplete first submissions → rounds of conditions", es: "Primeros envíos incompletos → rondas de condiciones" },
     evidence: {
-      en: "Rocket says complete files close 2.5–4.5 days faster; industry averages 3–3.5 underwriting touches per loan; Orbit now scores brokers on “initial underwriting quality”.",
-      es: "Rocket dice que las carpetas completas cierran 2,5–4,5 días antes; la industria promedia 3–3,5 revisiones por préstamo; Orbit ahora califica a los brokers por “calidad del primer análisis”.",
+      en: "Purchase Priority's 12-day promise requires a complete package at submission; Rocket says complete files close 2.5–4.5 days faster; the industry averages 3–3.5 underwriting touches per loan.",
+      es: "La promesa de 12 días de Purchase Priority exige la carpeta completa al enviar; Rocket dice que las carpetas completas cierran 2,5–4,5 días antes; la industria promedia 3–3,5 revisiones por préstamo.",
     },
-    covered: { en: "No — every Rocket tool acts after submission.", es: "No: todas las herramientas de Rocket actúan después del envío." },
+    covered: { en: "Not yet — Rocket's tools act after submission; “Right Track” (RPX runner-up) points here but isn't built.", es: "Todavía no: las herramientas de Rocket actúan después del envío; “Right Track” (finalista de RPX) apunta acá pero no está construida." },
     prize: 5,
   },
   {
@@ -446,7 +471,7 @@ const COMPETITION: L[][] = [
 
 const WINS: L[] = [
   { en: "Fewer underwriting touches — the largest cost Rocket controls on a 0.70%-margin channel.", es: "Menos revisiones del analista: el mayor costo que Rocket controla en un canal de 0,70% de margen." },
-  { en: "Protects the Purchase Priority promise (and its $1,000 credit) by starting the 12-day clock with a complete file.", es: "Protege la promesa de Purchase Priority (y su crédito de US$1.000) arrancando los 12 días con la carpeta completa." },
+  { en: "Gets more loans into Purchase Priority, whose 12-day promise requires a complete package at submission — and protects the $1,000 credit Rocket pays when it's missed.", es: "Hace que más préstamos entren en Purchase Priority, cuya promesa de 12 días exige la carpeta completa al enviar, y protege el crédito de US$1.000 que Rocket paga si no se cumple." },
   { en: "Helps brokers earn Orbit stars for “initial underwriting quality” — loyalty that UWM can't buy with incentives.", es: "Ayuda a los brokers a ganar estrellas de Orbit por “calidad del primer análisis”: lealtad que UWM no puede comprar con incentivos." },
   { en: "Turns Moving Squad recruits into producers faster: the tool teaches Rocket's way of preparing a file on every loan.", es: "Convierte más rápido a los brokers de Moving Squad en productores: la herramienta enseña cómo prepara Rocket cada préstamo." },
   { en: "Spanish-language borrower requests reach a fast-growing buyer segment without extra staff.", es: "Los pedidos en español llegan a un segmento de compradores en crecimiento sin sumar personal." },
@@ -514,7 +539,7 @@ const TRACKS: { name: L; body: L }[] = [
   { name: { en: "Mortgage operations", es: "Operaciones hipotecarias" }, body: { en: "18-step wholesale workflow, condition types, TRID timing, 2026 GSE changes.", es: "Flujo mayorista de 18 pasos, tipos de condiciones, plazos TRID, cambios 2026 de las agencias." } },
   { name: { en: "Real estate", es: "Real estate" }, body: { en: "Contract delays (NAR), agent–broker dynamics, Redfin & Compass.", es: "Demoras de contratos (NAR), relación agente–broker, Redfin y Compass." } },
   { name: { en: "Startups & mortgage tech", es: "Startups y mortgage tech" }, body: { en: "Vesta, Tidalwave, Candor, Friday Harbor, Better: what's funded and what's not.", es: "Vesta, Tidalwave, Candor, Friday Harbor, Better: qué se financia y qué no." } },
-  { name: { en: "Voice of the broker", es: "Voz del broker" }, body: { en: "Reddit, YouTube, TikTok, Instagram, trade press interviews.", es: "Reddit, YouTube, TikTok, Instagram, entrevistas en prensa del sector." } },
+  { name: { en: "Voice of the broker & borrower", es: "Voz del broker y del cliente" }, body: { en: "~230 Reddit comments, ~95 YouTube videos, 714 CFPB complaints, Trustpilot, trade press.", es: "~230 comentarios en Reddit, ~95 videos de YouTube, 714 quejas ante la CFPB, Trustpilot, prensa del sector." } },
   { name: { en: "Cross-check", es: "Verificación cruzada" }, body: { en: "Perplexity searches to confirm 2026 facts and find what the tracks missed.", es: "Búsquedas con Perplexity para confirmar datos de 2026 y encontrar lo que faltaba." } },
 ];
 

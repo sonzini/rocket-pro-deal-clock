@@ -425,8 +425,11 @@ export function evaluate(f: LoanFile): Result {
         en: "Appraisals take 5–14 business days and are a top cause of contract delays (5% of contracts in Sep 2026).",
         es: "Las tasaciones tardan 5–14 días hábiles y son una de las principales causas de demoras (5% de los contratos en sep. 2026).",
       },
-      fix: { en: "Order it as soon as the loan is locked/submitted; check waiver eligibility in DU/LPA.", es: "Pedirla apenas se bloquea o envía el préstamo; revisar si califica para exención en DU/LPA." },
-      ref: "NAR Realtors Confidence Index, Sep 2026",
+      fix: {
+        en: "Order it within 24 hours of submission — a Purchase Priority requirement for the 12-day clear-to-close. Check waiver eligibility in DU/LPA.",
+        es: "Pedirla dentro de las 24 horas del envío: es requisito de Purchase Priority para la aprobación final en 12 días. Revisar si califica para exención en DU/LPA.",
+      },
+      ref: "Rocket Pro Purchase Priority terms; NAR Realtors Confidence Index, Sep 2026",
       cycleDays: 0,
     });
   }
