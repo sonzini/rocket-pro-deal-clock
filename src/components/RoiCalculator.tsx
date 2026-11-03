@@ -9,25 +9,21 @@ import type { L } from "@/lib/types";
 // touches is an estimate meant to be replaced with Rocket's data in a pilot.
 type Inputs = {
   pullThrough: number; // extra percentage points of purchase locks that close
-  ppMissCut: number; // % of Purchase Priority misses avoided
   statusCalls: number; // "where are we?" calls avoided per loan
   referrals: number; // extra purchase loans per year per broker using the agent link
 };
 
-const PURCHASE_LOCKS = 68000; // ~80% of ~85K annual Rocket Pro locks
+const PURCHASE_LOCKS = 60000; // ~70% of ~85K annual Rocket Pro locks (Q3 2026 locks $8.2B × 4 ÷ $386K) — purchase share is an estimate
 const GOS = 2705; // Rocket gain on sale per loan (0.70% × $386K)
 const BROKER_COMP = 7700; // ~2% broker compensation per loan
-const PP_LOANS = 20000; // purchase loans/yr in Purchase Priority (estimate)
-const PP_MISS_RATE = 0.1; // share of those missing the 12-day commitment (estimate)
-const CREDIT = 1000; // credit paid when the commitment is missed
 const CALL_COST = 7; // ~10 min of AE/support time per status call
 const ACTIVE_BROKERS = 2000; // e.g. brokers already engaged in Rocket's agent-facing programs (Compass)
 
-const BASE: Inputs = { pullThrough: 1, ppMissCut: 25, statusCalls: 2, referrals: 1 };
+const BASE: Inputs = { pullThrough: 1, statusCalls: 2, referrals: 0.5 };
 const SCENARIOS: { name: L; v: Inputs }[] = [
-  { name: { en: "Conservative", es: "Conservador" }, v: { pullThrough: 0.5, ppMissCut: 10, statusCalls: 1, referrals: 0.5 } },
+  { name: { en: "Conservative", es: "Conservador" }, v: { pullThrough: 0.5, statusCalls: 1, referrals: 0.25 } },
   { name: { en: "Base", es: "Base" }, v: BASE },
-  { name: { en: "Upside", es: "Optimista" }, v: { pullThrough: 1.8, ppMissCut: 40, statusCalls: 3, referrals: 2 } },
+  { name: { en: "Upside", es: "Optimista" }, v: { pullThrough: 1.8, statusCalls: 3, referrals: 1 } },
 ];
 const fmtM = (n: number) => "$" + (n / 1e6).toFixed(1) + "M";
 
@@ -40,11 +36,10 @@ export function RoiCalculator() {
   const newLoans = ACTIVE_BROKERS * v.referrals;
   const rocket = {
     saved: savedClosings * GOS,
-    credits: PP_LOANS * PP_MISS_RATE * (v.ppMissCut / 100) * CREDIT,
     calls: PURCHASE_LOCKS * v.statusCalls * CALL_COST,
     growth: newLoans * GOS,
   };
-  const rocketTotal = rocket.saved + rocket.credits + rocket.calls + rocket.growth;
+  const rocketTotal = rocket.saved + rocket.calls + rocket.growth;
   const brokerTotal = (savedClosings + newLoans) * BROKER_COMP;
 
   const slider = (k: keyof Inputs, label: L, min: number, max: number, step: number, show: (n: number) => string) => (
@@ -71,13 +66,12 @@ export function RoiCalculator() {
           ))}
         </div>
         {slider("pullThrough", { en: "More purchase locks that close (pts)", es: "Más compras bloqueadas que cierran (pts)" }, 0, 3, 0.1, (n) => "+" + n.toFixed(1))}
-        {slider("ppMissCut", { en: "Purchase Priority misses avoided", es: "Incumplimientos de Purchase Priority evitados" }, 0, 60, 5, (n) => n + "%")}
         {slider("statusCalls", { en: "“Where are we?” calls avoided per loan", es: "Llamadas de “¿cómo vamos?” evitadas por préstamo" }, 0, 5, 0.5, (n) => n.toFixed(1))}
         {slider("referrals", { en: "Extra purchase loans per broker per year (agent referrals)", es: "Compras extra por broker por año (referidos de agentes)" }, 0, 4, 0.25, (n) => "+" + n.toFixed(2))}
         <p className="text-xs leading-relaxed text-muted">
           {t({
-            en: `Fixed inputs: ~${PURCHASE_LOCKS.toLocaleString("en-US")} purchase locks/yr, $${GOS.toLocaleString("en-US")} gain on sale and $${BROKER_COMP.toLocaleString("en-US")} broker comp per loan, ${PP_LOANS.toLocaleString("en-US")} Purchase Priority loans with ${PP_MISS_RATE * 100}% missing the 12-day mark ($1,000 credit each), $${CALL_COST} per status call, ${ACTIVE_BROKERS.toLocaleString("en-US")} brokers using the agent link. All estimates.`,
-            es: `Datos fijos: ~${PURCHASE_LOCKS.toLocaleString("en-US")} compras bloqueadas/año, US$${GOS.toLocaleString("en-US")} de margen y US$${BROKER_COMP.toLocaleString("en-US")} de comisión por préstamo, ${PP_LOANS.toLocaleString("en-US")} préstamos en Purchase Priority con ${PP_MISS_RATE * 100}% que no llega a los 12 días (US$1.000 de crédito cada uno), US$${CALL_COST} por llamada, ${ACTIVE_BROKERS.toLocaleString("en-US")} brokers usando el link. Todo estimado.`,
+            en: `Fixed inputs (estimates): ~${PURCHASE_LOCKS.toLocaleString("en-US")} purchase locks/yr, $${GOS.toLocaleString("en-US")} gain on sale (0.70% of a $386K loan) and $${BROKER_COMP.toLocaleString("en-US")} broker comp (~2%) per loan, $${CALL_COST} per status call (~10 min of AE time), ${ACTIVE_BROKERS.toLocaleString("en-US")} brokers using the agent link. The referral lever is the most speculative — the pilot exists to measure it.`,
+            es: `Datos fijos (estimados): ~${PURCHASE_LOCKS.toLocaleString("en-US")} compras bloqueadas/año, US$${GOS.toLocaleString("en-US")} de margen (0,70% de un préstamo de US$386.000) y US$${BROKER_COMP.toLocaleString("en-US")} de comisión (~2%) por préstamo, US$${CALL_COST} por llamada (~10 min de un ejecutivo), ${ACTIVE_BROKERS.toLocaleString("en-US")} brokers usando el link. Los referidos son la palanca más especulativa: el piloto existe para medirla.`,
           })}
         </p>
       </div>
@@ -88,7 +82,6 @@ export function RoiCalculator() {
           <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-sm text-white/75">
             <dt>{t({ en: "Deals saved", es: "Operaciones salvadas" })}</dt><dd className="num text-right">{fmtM(rocket.saved)}</dd>
             <dt>{t({ en: "New purchase loans", es: "Compras nuevas" })}</dt><dd className="num text-right">{fmtM(rocket.growth)}</dd>
-            <dt>{t({ en: "$1,000 credits avoided", es: "Créditos de US$1.000 evitados" })}</dt><dd className="num text-right">{fmtM(rocket.credits)}</dd>
             <dt>{t({ en: "Status calls avoided", es: "Llamadas evitadas" })}</dt><dd className="num text-right">{fmtM(rocket.calls)}</dd>
           </dl>
         </div>

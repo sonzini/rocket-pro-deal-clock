@@ -68,6 +68,7 @@ const addWhere = (d: ISODate, n: number, ok: (x: ISODate) => boolean) => {
   return x;
 };
 export const addBiz = (d: ISODate, n: number) => addWhere(d, n, isBizDay);
+export const nextBizDay = (d: ISODate) => nextWhere(d, isBizDay);
 const addTrid = (d: ISODate, n: number) => addWhere(d, n, isTridDay);
 
 /* ------------------------------------------------------------------ input */
@@ -213,7 +214,7 @@ export function plan(d: Deal): Plan {
     { id: "day9", date: day9, lane: "loan", label: L_("Day 9: lock, title, taxes, appraisal cleared", "Día 9: tasa, título, impuestos y tasación resueltos"), owner: "broker", state: d.lockDate > day9 || appraisalCleared > day9 ? "late" : "ok" },
     { id: "ctc", date: ctc, lane: "loan", label: eligible ? L_("Clear to close (day 12)", "Aprobación final (día 12)") : L_("Clear to close (est.)", "Aprobación final (est.)"), owner: "rocket", state: ctc > financingContingency ? "tight" : "ok" },
     { id: "cd", date: cdReceived, lane: "loan", label: L_("Closing Disclosure received", "El cliente recibe la divulgación de cierre"), owner: "borrower", state: "ok" },
-    { id: "earliest", date: earliestClose, lane: "loan", label: L_("Earliest possible closing", "Cierre más temprano posible"), owner: "title", state: slackDays < 0 ? "late" : slackDays <= 2 ? "tight" : "ok" },
+    { id: "earliest", date: earliestClose, lane: "loan", label: L_("Earliest practical closing", "Cierre más temprano posible"), owner: "title", state: slackDays < 0 ? "late" : slackDays <= 2 ? "tight" : "ok" },
   ];
   ms.sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : a.lane === "contract" ? -1 : 1));
 

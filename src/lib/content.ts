@@ -20,7 +20,7 @@ export const VOICES: { quote: string; who: L; source: string; url: string }[] = 
     url: "https://reddit.com/r/loanoriginators/comments/1xktmma/uwm_to_rocket/",
   },
   {
-    quote: "Closing process is much much streamlined in Rocket.",
+    quote: "Closing processes is much much streamlined in Rocket.",
     who: { en: "Broker comparing Rocket and UWM, Aug 2026", es: "Broker comparando Rocket y UWM, ago. 2026" },
     source: "r/loanoriginators",
     url: "https://reddit.com/r/loanoriginators/comments/1vzdd3i/uwm_vs_rocket_wholesale/",
@@ -40,6 +40,7 @@ export const VOICES: { quote: string; who: L; source: string; url: string }[] = 
 ];
 
 export const SOURCES: { title: string; url: string }[] = [
+  { title: "Rocket Pro blog — How our top brokers close loans up to 5 days faster", url: "https://www.rocketpro.com/blog/how-our-top-brokers-close-loans-up-to-5-days-faster" },
   { title: "Florida Realtors — Buyers turn to agents for mortgage information (43% vs 29%)", url: "https://www.floridarealtors.org/news-media/news-articles/2026/10/buyers-turn-agents-mortgage-information" },
   { title: "MPA — Pending sales at 12-year low; 14.5% of contracts canceled (Redfin)", url: "https://www.mpamag.com/us/mortgage-industry/market-updates/pending-home-sales-sink-to-12-year-low-after-mortgage-rates-soar-past-7/593311" },
   { title: "CFPB — TRID Closing Disclosure timing (12 CFR 1026.19(f))", url: "https://www.consumerfinance.gov/rules-policy/regulations/1026/19/" },
@@ -53,7 +54,7 @@ export const SOURCES: { title: string; url: string }[] = [
   { title: "Rocket Companies Q3 2026 results (SEC 8-K, Ex. 99.1)", url: "https://www.sec.gov/Archives/edgar/data/0001805284/000180528426000121/rkt-093020268xkex991earnin.htm" },
   { title: "Rocket Companies Q2 2026 results (SEC 8-K, Ex. 99.1)", url: "https://www.sec.gov/Archives/edgar/data/0001805284/000180528426000082/rkt-063020268xkex991earnin.htm" },
   { title: "Rocket Q3 2025 earnings call transcript (broker underwriting agent)", url: "https://s205.q4cdn.com/636124780/files/doc_events/2025/Oct/30/CORRECTED-TRANSCRIPT_-Rocket-Cos-Inc-RKT-US-Q3-2025-Earnings-Call-30-October-2025-4_30-VF.pdf" },
-  { title: "HousingWire — Rocket Pro Power Play: same-day approvals, 12-day CTC", url: "https://www.housingwire.com/articles/rocket-pro-power-play-approvals/" },
+  { title: "HousingWire — Rocket Pro Power Play (July 2026 promotion)", url: "https://www.housingwire.com/articles/rocket-pro-power-play-approvals/" },
   { title: "HousingWire — Orbit broker rewards (pull-through & initial UW quality)", url: "https://www.housingwire.com/articles/orbit-broker-rewards-rocket/" },
   { title: "HousingWire — Rocket Pro Moving Squad at RPX", url: "https://www.housingwire.com/articles/rocket-pro-moving-squad/" },
   { title: "HousingWire — Rocket Pro broker choice tech (ARIVE, Jupiter)", url: "https://www.housingwire.com/articles/rocket-pro-broker-choice-tech/" },
@@ -69,10 +70,9 @@ export const SOURCES: { title: string; url: string }[] = [
   { title: "Newrez Wholesale — Blueprint for Brokers", url: "https://www.newrezwholesale.com/grow-your-business/blueprint-for-brokers/" },
   { title: "HousingWire/MBA — IMB production expense Q2 2026", url: "https://housingwire.com/articles/imb-mortgage-profits-q2-2026" },
   { title: "HousingWire — The cost to originate and AI economics", url: "https://www.housingwire.com/articles/cost-originate-ai-economics/" },
-  { title: "Freddie Mac — 2025 cost to originate study (5 days, 1.8%, $1,700)", url: "https://sf.freddiemac.com/articles/insights/2025-updates-to-the-cost-to-originate-study" },
+  { title: "Freddie Mac — 2025 cost to originate study (digital tools: ~1.8% pull-through)", url: "https://sf.freddiemac.com/articles/insights/2025-updates-to-the-cost-to-originate-study" },
   { title: "National Mortgage News — Key to controlling costs: fewer touches", url: "https://www.nationalmortgagenews.com/news/key-to-controlling-mortgage-costs-fewer-touches" },
-  { title: "ICE Mortgage Monitor, May 2026 (36.8 days to close)", url: "https://mortgagetech.ice.com/resources/data-reports/may-2026-mortgage-monitor" },
-  { title: "ACES Q4 2025 Mortgage QC Industry Trends (income & asset defects)", url: "https://www.acesquality.com/resources/reports/q4-2025-aces-mortgage-qc-industry-trends" },
+    { title: "ACES Q4 2025 Mortgage QC Industry Trends (income & asset defects)", url: "https://www.acesquality.com/resources/reports/q4-2025-aces-mortgage-qc-industry-trends" },
   { title: "Fannie Mae Selling Guide B3-4.2-02 (large deposits)", url: "https://selling-guide.fanniemae.com/sel/b3-4.2-02/depository-accounts" },
   { title: "NAR Realtors Confidence Index (delayed & terminated contracts)", url: "https://www.nar.realtor/reports/realtors-confidence-index-0" },
   { title: "NAR — First-time buyer share falls to 21%", url: "https://www.nar.realtor/press-releases/first-time-home-buyer-share-falls-to-historic-low-of-21-median-age-rises-to-40" },

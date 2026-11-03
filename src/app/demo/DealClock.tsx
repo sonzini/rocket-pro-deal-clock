@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { plan, defaultDeal, agentMessage, prettyDate, diffDays, addDays, type Deal, type Milestone, type State } from "@/lib/dealclock";
+import { plan, defaultDeal, agentMessage, prettyDate, diffDays, addDays, nextBizDay, type Deal, type Milestone, type State } from "@/lib/dealclock";
 import { useLang } from "@/lib/i18n";
 import type { L } from "@/lib/types";
 
@@ -36,10 +36,10 @@ export function DealClock() {
       const q = plan(x);
       const next = { ...x, afterCutoff: false, cdByMail: false };
       const needAppr = q.milestones.find((m) => m.id === "appr_back");
-      if (q.alerts.some((a) => a.id === "appraisal_cont") && needAppr) next.appraisalContingencyDays = diffDays(x.acceptance, addDays(needAppr.date, 2));
-      if (q.alerts.some((a) => a.id === "financing_cont")) next.financingContingencyDays = diffDays(x.acceptance, addDays(q.ctc, 2));
+      if (q.alerts.some((a) => a.id === "appraisal_cont") && needAppr) next.appraisalContingencyDays = diffDays(x.acceptance, nextBizDay(addDays(needAppr.date, 2)));
+      if (q.alerts.some((a) => a.id === "financing_cont")) next.financingContingencyDays = diffDays(x.acceptance, nextBizDay(addDays(q.ctc, 2)));
       const after = plan(next);
-      if (after.slackDays < 0) next.closing = addDays(after.earliestClose, 1);
+      if (after.slackDays < 0) next.closing = nextBizDay(addDays(after.earliestClose, 1));
       const fin = plan(next);
       const needed = addDays(next.closing > fin.earliestClose ? next.closing : fin.earliestClose, 2);
       if (addDays(next.lockDate, next.lockTermDays) < needed) next.lockTermDays = [30, 45, 60, 75].find((n) => addDays(next.lockDate, n) >= needed) ?? 90;
@@ -133,7 +133,7 @@ export function DealClock() {
             </div>
             {risks > 0 && (
               <button onClick={applyFixes} className="mt-4 rounded-xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-95">
-                {t({ en: "Apply the suggested contract changes", es: "Aplicar los cambios sugeridos al contrato" })}
+                {t({ en: "Apply the suggested changes", es: "Aplicar los cambios sugeridos" })}
               </button>
             )}
           </div>
@@ -185,8 +185,8 @@ export function DealClock() {
                 </ol>
                 <p className="mt-4 text-xs text-muted">
                   {t({
-                    en: "Business days exclude weekends and federal holidays. Closing Disclosure timing follows TRID (3 business days, Saturdays count). All dates are estimates.",
-                    es: "Los días hábiles excluyen fines de semana y feriados federales. Los tiempos de la divulgación de cierre siguen TRID (3 días hábiles, cuentan los sábados). Todas las fechas son estimadas.",
+                    en: "Business days exclude weekends and federal holidays. Closing Disclosure timing follows TRID (3 business days, Saturdays count), rounded to the next weekday for a practical closing. All dates are estimates.",
+                    es: "Los días hábiles excluyen fines de semana y feriados federales. Los tiempos de la divulgación de cierre siguen TRID (3 días hábiles, cuentan los sábados), llevados al siguiente día de semana para un cierre práctico. Todas las fechas son estimadas.",
                   })}
                 </p>
               </div>
@@ -284,7 +284,7 @@ function AgentPhone({ deal, p, t, d }: { deal: Deal; p: ReturnType<typeof plan>;
             <ol className="mt-1.5 space-y-1.5">
               {steps.map(([id, label], i) => (
                 <li key={id} className="flex items-center gap-2">
-                  <span className={`grid h-5 w-5 place-items-center rounded-full text-[10px] font-semibold ${i === 0 ? "bg-good text-white" : "bg-paper text-muted"}`}>{i === 0 ? "✓" : i + 1}</span>
+                  <span className={`grid h-5 w-5 place-items-center rounded-full text-[10px] font-semibold ${m(id).date <= today() ? "bg-good text-white" : "bg-paper text-muted"}`}>{m(id).date <= today() ? "✓" : i + 1}</span>
                   <span className="flex-1">{t(label)}</span>
                   <span className="num text-[11px] text-muted">{d(m(id).date)}</span>
                 </li>

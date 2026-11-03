@@ -42,7 +42,7 @@ export function Report() {
           </div>
 
           <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line lg:grid-cols-4">
-            <Stat value="30 vs 36.8" label={{ en: "days a typical contract allows vs. days the average purchase loan takes (NAR, ICE)", es: "días que da un contrato típico vs. días que tarda en promedio un préstamo de compra (NAR, ICE)" }} />
+            <Stat value="12" label={{ en: "business days to clear to close under Purchase Priority — only if the broker clears the day-1 and day-9 gates", es: "días hábiles hasta la aprobación final con Purchase Priority, solo si el broker cumple los controles de los días 1 y 9" }} />
             <Stat value="16%" label={{ en: "of US home contracts had a delayed settlement in Sep 2026 (NAR)", es: "de los contratos en EE.UU. se demoraron en sep. 2026 (NAR)" }} />
             <Stat value="39%" label={{ en: "of Rocket's application & closing complaints to the CFPB are delays or communication", es: "de las quejas a Rocket ante la CFPB sobre solicitud y cierre son por demoras o comunicación" }} />
             <Stat value="43%" label={{ en: "of buyers go to their agent for mortgage information — vs 29% to a lender", es: "de los compradores consulta la hipoteca con su agente, contra 29% con un prestamista" }} />
@@ -74,8 +74,8 @@ export function Report() {
         </ol>
         <Callout>
           {t({
-            en: "Nothing here was anyone's mistake. Each party watched its own clock. The collisions were visible on day 0 — if someone had put the contract and the loan on the same page.",
-            es: "Nada de esto fue un error de alguien. Cada parte miró su propio reloj. Los choques se veían desde el día 0, si alguien hubiera puesto el contrato y el préstamo en la misma página.",
+            en: "No one did anything unusual. Each party watched its own clock. The collisions were visible on day 0 — if someone had put the contract and the loan on the same page.",
+            es: "Nadie hizo nada fuera de lo común. Cada parte miró su propio reloj. Los choques se veían desde el día 0, si alguien hubiera puesto el contrato y el préstamo en la misma página.",
           })}
         </Callout>
       </Section>
@@ -91,8 +91,8 @@ export function Report() {
             <p className="text-xs font-semibold uppercase tracking-wider text-accent">{t({ en: "From Rocket Pro's own fine print", es: "De la letra chica del propio Rocket Pro" })}</p>
             <p className="mt-2">
               {t({
-                en: "Purchase Priority promises same-day conditional approval and clear to close in 12 business days — if the appraisal is ordered within 24 hours, and the lock, final structure, title, tax certifications and appraisal are cleared by 8:00 p.m. ET on business day 9. Folders received after 4:00 p.m. ET start the next day. The terms add that the broker is “solely responsible” for timely documentation.",
-                es: "Purchase Priority promete aprobación condicional en el día y final en 12 días hábiles, siempre que la tasación se pida dentro de las 24 horas, y que tasa, estructura final, título, certificados de impuestos y tasación estén resueltos antes de las 20 h (hora del Este) del día hábil 9. Las carpetas que llegan después de las 16 h arrancan al día siguiente. Los términos agregan que el broker es el “único responsable” de la documentación a tiempo.",
+                en: "Purchase Priority promises same-day conditional approval and clear to close in 12 business days — if the appraisal is ordered within 24 hours, and the lock, final structure, title, tax certifications and appraisal are cleared by 8:00 p.m. ET on business day 9. Folders received after 4:00 p.m. ET start the next day. The terms add that the broker is “solely responsible” for timely documentation, and that a missed timeline gives the broker no recourse. The promotion runs Oct 6 – Dec 14, 2026.",
+                es: "Purchase Priority promete aprobación condicional en el día y final en 12 días hábiles, siempre que la tasación se pida dentro de las 24 horas, y que tasa, estructura final, título, certificados de impuestos y tasación estén resueltos antes de las 20 h (hora del Este) del día hábil 9. Las carpetas que llegan después de las 16 h arrancan al día siguiente. Los términos agregan que el broker es el “único responsable” de la documentación a tiempo, y que si Rocket no cumple los plazos el broker no tiene derecho a compensación. La promoción corre del 6 de octubre al 14 de diciembre de 2026.",
               })}
             </p>
             <a href="https://www.rocketpro.com/orbit" target="_blank" rel="noreferrer" className="mt-3 inline-block text-xs text-muted underline underline-offset-2 hover:text-ink">rocketpro.com/orbit</a>
@@ -142,7 +142,7 @@ export function Report() {
       <Section
         id="white-space"
         kicker={{ en: "Where the money and the tools go", es: "Hacia dónde van la plata y las herramientas" }}
-        title={{ en: "Everyone builds for the loan file. Nobody builds for the deal calendar.", es: "Todos construyen para la carpeta del préstamo. Nadie para el calendario de la operación." }}
+        title={{ en: "Everyone builds for the loan file. Almost nobody builds for the deal calendar.", es: "Todos construyen para la carpeta del préstamo. Casi nadie para el calendario de la operación." }}
         intro={{
           en: "Mortgage-tech funding, competitor tools and Rocket's own Big Pitch ideas, placed by who uses them and what they work on.",
           es: "La inversión en mortgage tech, las herramientas de la competencia y las ideas del Big Pitch de Rocket, ubicadas según quién las usa y sobre qué trabajan.",
@@ -153,8 +153,8 @@ export function Report() {
           <span className="pb-1 text-center text-xs font-semibold uppercase tracking-wider text-muted">{t({ en: "Lender / underwriting side", es: "Lado del prestamista / análisis" })}</span>
           <span className="pb-1 text-center text-xs font-semibold uppercase tracking-wider text-muted">{t({ en: "Broker · agent · borrower side", es: "Lado broker · agente · cliente" })}</span>
           <span className="flex rotate-180 items-center text-xs font-semibold uppercase tracking-wider text-muted [writing-mode:vertical-rl]">{t({ en: "Documents & conditions", es: "Documentos y condiciones" })}</span>
-          <Quad items={["Vesta", "Tidalwave", "Candor", "Friday Harbor", "Ocrolus", "Truv", "UWM Underwriting+", "Rocket Pro Signal*"]} note={t({ en: "Crowded — most VC money", es: "Saturado: la mayor parte de la inversión" })} />
-          <Quad items={["Rocket Pro Right Track*", "UWM BOLT", "Rocket Pro Navigate", "ARIVE / Jupiter LOS"]} note={t({ en: "Busy — incl. Rocket's own roadmap", es: "Ocupado: incluye la hoja de ruta de Rocket" })} />
+          <Quad items={["Vesta", "Tidalwave", "Candor", "Friday Harbor", "Ocrolus", "Truv", "UWM Underwriting+", "Signal (idea)*"]} note={t({ en: "Crowded — most VC money", es: "Saturado: la mayor parte de la inversión" })} />
+          <Quad items={["Right Track (idea)*", "UWM BOLT", "Rocket Pro Navigate", "ARIVE / Jupiter LOS"]} note={t({ en: "Busy — incl. Rocket's own roadmap", es: "Ocupado: incluye la hoja de ruta de Rocket" })} />
           <span className="flex rotate-180 items-center text-xs font-semibold uppercase tracking-wider text-muted [writing-mode:vertical-rl]">{t({ en: "Deal timing & communication", es: "Tiempos y comunicación" })}</span>
           <Quad items={["Newrez turn-time board", "Pennymac portal", "Rocket Pro Assist", "UWM Mia (rates, payments)"]} note={t({ en: "Status for the broker only", es: "Estado solo para el broker" })} />
           <div className="rounded-2xl border-2 border-dashed border-accent bg-accent-soft/50 p-4">
@@ -164,7 +164,7 @@ export function Report() {
             </p>
           </div>
         </div>
-        <p className="mt-3 text-xs text-muted">{t({ en: "* In development, from Rocket Pro's Big Pitch (rocketpro.com/the-big-pitch).", es: "* En desarrollo, del Big Pitch de Rocket Pro (rocketpro.com/the-big-pitch)." })}</p>
+        <p className="mt-3 text-xs text-muted">{t({ en: "* Big Pitch finalist ideas (2nd and 3rd place) on rocketpro.com/the-big-pitch — pitched by brokers, not shipped products.", es: "* Ideas finalistas del Big Pitch (2.º y 3.er puesto) en rocketpro.com/the-big-pitch: propuestas de brokers, no productos lanzados." })}</p>
       </Section>
 
       {/* ---------------- Voices ---------------- */}
@@ -230,8 +230,8 @@ export function Report() {
             <h3 className="font-semibold">{t({ en: "Where it lives", es: "Dónde vive" })}</h3>
             <p className="mt-3 text-sm text-muted">
               {t({
-                en: "Inside Rocket Pro Navigate and Jupiter, fed by the 18+ status events Rocket already sends to ARIVE and Jupiter. It complements Right Track and Signal: they look inside the loan file; Deal Clock looks at the calendar around it and translates it for the people outside the file.",
-                es: "Dentro de Rocket Pro Navigate y Jupiter, alimentado por los más de 18 eventos de estado que Rocket ya envía a ARIVE y Jupiter. Complementa a Right Track y Signal: ellos miran dentro de la carpeta; Deal Clock mira el calendario alrededor y lo traduce para quienes están fuera de la carpeta.",
+                en: "Inside Rocket Pro Navigate and Jupiter, fed by the 18+ status events Rocket already sends to ARIVE and Jupiter. It complements the Right Track and Signal ideas from Rocket's Big Pitch: they look inside the loan file; Deal Clock looks at the calendar around it and translates it for the people outside the file.",
+                es: "Dentro de Rocket Pro Navigate y Jupiter, alimentado por los más de 18 eventos de estado que Rocket ya envía a ARIVE y Jupiter. Complementa las ideas Right Track y Signal del Big Pitch de Rocket: ellas miran dentro de la carpeta; Deal Clock mira el calendario alrededor y lo traduce para quienes están fuera de la carpeta.",
               })}
             </p>
             <Link href="/demo" className="mt-4 inline-block text-sm font-semibold text-accent underline-offset-4 hover:underline">
@@ -269,10 +269,10 @@ export function Report() {
       <Section
         id="business-case"
         kicker={{ en: "Business case", es: "Caso de negocio" }}
-        title={{ en: "Purchase is where Rocket is growing. On-time closings are how brokers win it.", es: "La compra es donde crece Rocket. Cerrar en fecha es cómo los brokers la ganan." }}
+        title={{ en: "Purchase is the market that's holding up. On-time closings are how brokers win it.", es: "La compra es el mercado que se sostiene. Cerrar en fecha es cómo los brokers la ganan." }}
         intro={{
-          en: "Rocket Pro earns ~0.70% per loan, so the levers are volume and avoided waste: deals saved, new purchase referrals, $1,000 credits not paid, calls not taken. Freddie Mac found 5 fewer days of cycle time lifted pull-through 1.8%. Move the sliders.",
-          es: "Rocket Pro gana ~0,70% por préstamo, así que las palancas son volumen y desperdicio evitado: operaciones salvadas, referidos nuevos, créditos de US$1.000 que no se pagan, llamadas que no se atienden. Freddie Mac encontró que 5 días menos de ciclo subieron 1,8% los cierres. Mové los controles.",
+          en: "Rocket Pro closed $9.0B in Q3 2026, down 19% from Q2, at a ~0.70% gain-on-sale margin — so the levers are volume and avoided waste: deals saved, new purchase referrals, status calls not taken. Freddie Mac estimates faster, cleaner files lift pull-through ~1.8%. Move the sliders; every input is an assumption.",
+          es: "Rocket Pro cerró US$9.000M en el Q3 2026, 19% menos que en el Q2, con ~0,70% de margen; así que las palancas son volumen y desperdicio evitado: operaciones salvadas, referidos nuevos, llamadas que no se atienden. Freddie Mac estima que carpetas más rápidas y limpias suben ~1,8% los cierres. Mové los controles; cada dato es un supuesto.",
         }}
       >
         <RoiCalculator />
@@ -393,7 +393,7 @@ const STORY: { when: L; what: L; why: L; tone?: "warn" | "bad" }[] = [
   },
   {
     when: { en: "Wed, Nov 11 · Veterans Day", es: "mié 11 nov · Día de los Veteranos" },
-    what: { en: "The appraiser's 7-business-day clock skips a day.", es: "El reloj de 7 días hábiles del tasador se saltea un día." },
+    what: { en: "Assuming a 7-business-day appraisal that skips the federal holiday, the report slips a day.", es: "Si la tasación tarda 7 días hábiles y no cuenta el feriado federal, el informe se corre un día." },
     why: { en: "The report will land Wed Nov 18 and be reviewed Thu Nov 19 — exactly Rocket's day-9 gate.", es: "El informe va a llegar el miércoles 18 y revisarse el jueves 19: justo el control del día 9 de Rocket." },
     tone: "warn",
   },
@@ -420,27 +420,27 @@ const PAYS: { who: L; cost: L }[] = [
   { who: { en: "Buyer", es: "Comprador" }, cost: { en: "Lock extensions (~2 bps a day), earnest money at risk, a slipped move-in date.", es: "Extensiones de tasa (~2 pb por día), seña en riesgo, mudanza demorada." } },
   { who: { en: "Agent", es: "Agente" }, cost: { en: "Unpaid hours chasing status; a seller threatening to cancel (14.5% of contracts canceled in Sep 2026).", es: "Horas sin cobrar persiguiendo novedades; un vendedor que amenaza con cancelar (14,5% de contratos cancelados en sep. 2026)." } },
   { who: { en: "Broker", es: "Broker" }, cost: { en: "Lost commission (~$7,700 per loan) and the agent's next referral.", es: "Comisión perdida (~US$7.700 por préstamo) y el próximo referido del agente." } },
-  { who: { en: "Rocket", es: "Rocket" }, cost: { en: "$1,000 credits on missed commitments, status calls to AEs, complaints, and purchase share it is fighting UWM for.", es: "Créditos de US$1.000 por compromisos incumplidos, llamadas a los ejecutivos, quejas y la participación en compras que disputa con UWM." } },
+  { who: { en: "Rocket", es: "Rocket" }, cost: { en: "A broken speed promise, status calls to AEs, complaints, and purchase share it is fighting UWM for.", es: "Una promesa de velocidad incumplida, llamadas a los ejecutivos, quejas y la participación en compras que disputa con UWM." } },
 ];
 
 const BOTTLENECKS: { name: L; evidence: L; covered: L; room: number; pick?: boolean }[] = [
   {
     pick: true,
     name: { en: "Contract deadlines vs. loan milestones — nobody lines them up", es: "Plazos del contrato vs. hitos del préstamo: nadie los alinea" },
-    evidence: { en: "30-day contracts vs 36.8-day loans; 16% of contracts delayed; Purchase Priority gates on day 1 and day 9; 43% of buyers ask their agent first.", es: "Contratos de 30 días vs préstamos de 36,8; 16% de contratos demorados; Purchase Priority con controles en los días 1 y 9; 43% de los compradores pregunta primero al agente." },
-    covered: { en: "Nobody. Competitors show status to brokers only.", es: "Nadie. La competencia muestra el estado solo al broker." },
+    evidence: { en: "16% of contracts delayed (NAR); Purchase Priority gates on day 1 and day 9; 43% of buyers ask their agent about the mortgage first.", es: "16% de contratos demorados (NAR); Purchase Priority con controles en los días 1 y 9; 43% de los compradores consulta la hipoteca primero con su agente." },
+    covered: { en: "No shipped product. A Big Pitch entry (“Relay”) pitched a broker closing command center; competitors show status to brokers only.", es: "Ningún producto lanzado. Una propuesta del Big Pitch (“Relay”) planteó un centro de control de cierres para el broker; la competencia muestra el estado solo al broker." },
     room: 5,
   },
   {
     name: { en: "Document validation before submission", es: "Validación de documentos antes del envío" },
-    evidence: { en: "Complete files close 2.5–4.5 days faster (Rocket); 3–3.5 underwriting touches per loan.", es: "Las carpetas completas cierran 2,5–4,5 días antes (Rocket); 3–3,5 revisiones por préstamo." },
-    covered: { en: "Crowded: Rocket's Right Track, Navigate document analyzer, Vesta, Candor, Ocrolus…", es: "Saturado: Right Track y el analizador de documentos de Navigate de Rocket, Vesta, Candor, Ocrolus…" },
+    evidence: { en: "Rocket Pro: complete files close purchases 2.5 days sooner (refis 4.5); industry benchmark of 3–3.5 underwriting touches per loan (2015).", es: "Rocket Pro: las carpetas completas cierran compras 2,5 días antes (refinanciaciones 4,5); referencia de la industria de 3–3,5 revisiones por préstamo (2015)." },
+    covered: { en: "Crowded: Rocket's Navigate document analyzer, the “Right Track” Big Pitch idea, Vesta, Candor, Ocrolus…", es: "Saturado: el analizador de documentos de Navigate de Rocket, la idea “Right Track” del Big Pitch, Vesta, Candor, Ocrolus…" },
     room: 2,
   },
   {
     name: { en: "Conditions that resurface late", es: "Condiciones que reaparecen tarde" },
     evidence: { en: "Top broker workflow complaint: “always at the 11th hour”.", es: "Queja operativa principal de los brokers: “siempre a último momento”." },
-    covered: { en: "Rocket's Signal (in development); UWM Underwriting+.", es: "Signal de Rocket (en desarrollo); UWM Underwriting+." },
+    covered: { en: "The “Signal” Big Pitch idea; UWM Underwriting+.", es: "La idea “Signal” del Big Pitch; UWM Underwriting+." },
     room: 3,
   },
   {
@@ -451,13 +451,13 @@ const BOTTLENECKS: { name: L; evidence: L; covered: L; room: number; pick?: bool
   },
   {
     name: { en: "New partners slow to produce", es: "Socios nuevos que tardan en producir" },
-    evidence: { en: "~200 new partners ($12B potential) while closed volume fell 19%.", es: "~200 socios nuevos (US$12B potenciales) mientras el volumen cerrado cayó 19%." },
+    evidence: { en: "Rocket Pro closed volume fell 19% QoQ to $9.0B (Q3 2026) while Rocket pushed recruiting from UWM.", es: "El volumen cerrado de Rocket Pro cayó 19% trimestral a US$9.000M (Q3 2026) mientras Rocket impulsaba la captación de brokers de UWM." },
     covered: { en: "Moving Squad (4 people per broker), Salesforce AE tools.", es: "Moving Squad (4 personas por broker), herramientas de Salesforce para los ejecutivos." },
     room: 3,
   },
   {
     name: { en: "Pricing complexity", es: "Complejidad de precios" },
-    evidence: { en: "CRO: brokers needed “calculators, cheat sheets or calls with AEs”.", es: "El CRO: los brokers necesitaban “calculadoras, machetes o llamadas con el ejecutivo”." },
+    evidence: { en: "CRO Austin Niemiec: “pricing shouldn't be gamified” — brokers shouldn't need a calculator, cheat sheet or AE call to get a good price.", es: "El CRO Austin Niemiec: “pricing shouldn't be gamified”; los brokers no deberían necesitar calculadora, machete ni llamada al ejecutivo para un buen precio." },
     covered: { en: "Flat base pricing since Sep 2026.", es: "Precio base parejo desde sep. 2026." },
     room: 1,
   },
@@ -465,7 +465,7 @@ const BOTTLENECKS: { name: L; evidence: L; covered: L; room: number; pick?: bool
 
 const WINS: L[] = [
   { en: "Grows purchase volume — Rocket's stated priority as refinances fall — through the people who send buyers: real estate agents.", es: "Hace crecer las compras, la prioridad declarada de Rocket mientras caen las refinanciaciones, a través de quienes mandan compradores: los agentes inmobiliarios." },
-  { en: "Gets more loans through Purchase Priority's day-1 and day-9 gates, so fewer $1,000 credits are paid.", es: "Hace que más préstamos pasen los controles de los días 1 y 9 de Purchase Priority, con menos créditos de US$1.000 pagados." },
+  { en: "Gets more loans through Purchase Priority's day-1 and day-9 gates, so Rocket keeps the speed promise it advertises.", es: "Hace que más préstamos pasen los controles de los días 1 y 9 de Purchase Priority, para que Rocket cumpla la promesa de velocidad que anuncia." },
   { en: "A visible no-poaching proof: the agent sees the broker's brand, never Rocket retail.", es: "Una prueba visible de no quitar clientes: el agente ve la marca del broker, nunca la de Rocket retail." },
   { en: "Something no wholesale competitor offers: UWM, Newrez and Pennymac show status to the broker only.", es: "Algo que ningún competidor mayorista ofrece: UWM, Newrez y Pennymac muestran el estado solo al broker." },
   { en: "Rules-based and explainable: no AI decisions, no borrower financial data shared.", es: "Basado en reglas y explicable: sin decisiones de IA y sin compartir datos financieros del cliente." },
@@ -478,7 +478,7 @@ const FAQ: { q: L; a: L }[] = [
 ];
 
 const PILOT: L[] = [
-  { en: "20 Orbit broker shops for 60 days of the spring purchase season; matched control group.", es: "20 brokers Orbit durante 60 días de la temporada de compras de primavera; grupo de control equivalente." },
+  { en: "20 Orbit broker shops for 60 days of the spring purchase season, using whatever turn-time commitment Rocket runs then (the milestones are a configurable template); matched control group.", es: "20 brokers Orbit durante 60 días de la temporada de compras de primavera, con el compromiso de plazos que Rocket tenga vigente (los hitos son una plantilla configurable); grupo de control equivalente." },
   { en: "Milestone rules configured with Rocket Pro operations (cutoffs, holidays, program window).", es: "Reglas de plazos configuradas con operaciones de Rocket Pro (cortes, feriados, ventana del programa)." },
   { en: "Agent link opt-in per deal, with borrower consent; milestones only.", es: "Link para el agente opcional por operación, con consentimiento del cliente; solo hitos." },
   { en: "Weekly readout to Rocket Pro leadership on the four metrics.", es: "Reporte semanal a la dirección de Rocket Pro con las cuatro métricas." },
@@ -495,7 +495,7 @@ const ROADMAP: { when: L; title: L; body: L }[] = [
   { when: { en: "Done", es: "Hecho" }, title: { en: "Working MVP (this site)", es: "MVP funcionando (este sitio)" }, body: { en: "Calendar engine with Purchase Priority + TRID rules and federal holidays; broker plan, agent link, offer letter; bilingual.", es: "Motor de calendario con reglas de Purchase Priority + TRID y feriados federales; plan del broker, link del agente, carta para la oferta; bilingüe." } },
   { when: { en: "Weeks 1–4", es: "Semanas 1–4" }, title: { en: "Real status, real dates", es: "Estado real, fechas reales" }, body: { en: "Read contract dates from Jupiter/ARIVE and Rocket's status events, so the plan updates itself.", es: "Leer las fechas del contrato desde Jupiter/ARIVE y los eventos de estado de Rocket, para que el plan se actualice solo." } },
   { when: { en: "Weeks 5–12", es: "Semanas 5–12" }, title: { en: "Pilot with 20 brokers", es: "Piloto con 20 brokers" }, body: { en: "Text-message updates to agents, consent flow, measurement against the control group.", es: "Avisos por mensaje a los agentes, flujo de consentimiento y medición contra el grupo de control." } },
-  { when: { en: "Next quarter", es: "Próximo trimestre" }, title: { en: "Inside Navigate for every broker", es: "Dentro de Navigate para todos los brokers" }, body: { en: "Connect to Signal and Right Track: when they flag a risk in the file, Deal Clock shows what it does to the contract dates.", es: "Conectar con Signal y Right Track: cuando detectan un riesgo en la carpeta, Deal Clock muestra qué le hace a las fechas del contrato." } },
+  { when: { en: "Next quarter", es: "Próximo trimestre" }, title: { en: "Inside Navigate for every broker", es: "Dentro de Navigate para todos los brokers" }, body: { en: "If Rocket builds the Signal or Right Track ideas, connect them: when they flag a risk in the file, Deal Clock shows what it does to the contract dates.", es: "Si Rocket construye las ideas Signal o Right Track, conectarlas: cuando detecten un riesgo en la carpeta, Deal Clock muestra qué le hace a las fechas del contrato." } },
 ];
 
 const RISKS: { risk: L; answer: L }[] = [
